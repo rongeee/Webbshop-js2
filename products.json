@@ -1,0 +1,62 @@
+{
+  "shirts": [
+    {
+      "name": "Blue Shirt",
+      "price": 499,
+      "quantity": 13,
+      "category": "shirts"
+    },
+    {
+      "name": "Red Shirt",
+      "price": 399,
+      "quantity": 16,
+      "category": "shirts"
+    },
+    {
+      "name": "Yellow Shirt",
+      "price": 199,
+      "quantity": 11,
+      "category": "shirts"
+    }
+  ],
+  "hats": [
+    {
+      "name": "Top Hat",
+      "price": 1999,
+      "quantity": 11,
+      "category": "hats"
+    },
+    {
+      "name": "Small Hat",
+      "price": 999,
+      "quantity": 8,
+      "category": "hats"
+    },
+    {
+      "name": "Nice Hat",
+      "price": 599,
+      "quantity": 11,
+      "category": "hats"
+    }
+  ],
+  "shoes": [
+    {
+      "name": "Sneakers",
+      "price": 2299,
+      "quantity": 29,
+      "category": "shoes"
+    },
+    {
+      "name": "Dress Shoes",
+      "price": 5999,
+      "quantity": 3,
+      "category": "shoes"
+    },
+    {
+      "name": "Flip Flops",
+      "price": 99,
+      "quantity": 111,
+      "category": "shoes"
+    }
+  ]
+}
