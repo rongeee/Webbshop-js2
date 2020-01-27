@@ -25,28 +25,37 @@ const cardTemplate = (name, price, img) => {
     `;
 };
 
+const handleErrors = response => {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response.json();
+};
+
 async function getProducts() {
-  return fetch("./products.json").then(res => {
-    return res.json();
-  });
+  fetch("./products.json")
+    .then(handleErrors)
+    .then(data => {
+      data.products.forEach(item => {
+        localDb.products.push(item);
+
+        switch (item.category) {
+          case "shirts":
+            productShirts.innerHTML += cardTemplate(item.name, item.price);
+            break;
+          case "hats":
+            productHats.innerHTML += cardTemplate(item.name, item.price);
+            break;
+          case "shoes":
+            productShoes.innerHTML += cardTemplate(item.name, item.price);
+            break;
+        }
+      });
+    })
+    .catch(error => {
+      console.error(error);
+      console.error("Checka din .json va");
+    });
 }
 
-getProducts().then(data => {
-  console.log(data);
-
-  data.products.forEach(item => {
-    localDb.products.push(item);
-
-    switch (item.category) {
-      case "shirts":
-        productShirts.innerHTML += cardTemplate(item.name, item.price);
-        break;
-      case "hats":
-        productHats.innerHTML += cardTemplate(item.name, item.price);
-        break;
-      case "shoes":
-        productShoes.innerHTML += cardTemplate(item.name, item.price);
-        break;
-    }
-  });
-});
+getProducts();
