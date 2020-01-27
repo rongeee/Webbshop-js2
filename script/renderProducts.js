@@ -37,7 +37,7 @@ const handleErrors = response => {
 };
 
 async function getProducts() {
-  fetch("./404")
+  fetch("./products.json")
     .then(handleErrors)
     .then(data => {
       data.products.forEach(item => {
