@@ -1,5 +1,5 @@
 {
-  "shirts": [
+  "products": [
     {
       "name": "Blue Shirt",
       "price": 499,
@@ -17,9 +17,7 @@
       "price": 199,
       "quantity": 11,
       "category": "shirts"
-    }
-  ],
-  "hats": [
+    },
     {
       "name": "Top Hat",
       "price": 1999,
@@ -37,9 +35,7 @@
       "price": 599,
       "quantity": 11,
       "category": "hats"
-    }
-  ],
-  "shoes": [
+    },
     {
       "name": "Sneakers",
       "price": 2299,
