@@ -1,8 +1,12 @@
 const productShirts = document.querySelector(
   ".products__shirts .products__card-container"
 );
-const productHats = document.querySelector(".products__hats");
-const productShoes = document.querySelector(".products__shoes");
+const productHats = document.querySelector(
+  ".products__hats .products__card-container"
+);
+const productShoes = document.querySelector(
+  ".products__shoes .products__card-container"
+);
 
 const cardTemplate = (name, price, img) => {
   return `
