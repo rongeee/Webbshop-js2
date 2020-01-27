@@ -8,7 +8,7 @@ const productShoes = document.querySelector(
   ".products__shoes .products__card-container"
 );
 
-const lobalDb = {
+const localDb = {
   products: []
 };
 
@@ -35,8 +35,7 @@ getProducts().then(data => {
   console.log(data);
 
   data.products.forEach(item => {
-    lobalDb.products.push(item);
-    console.log(item);
+    localDb.products.push(item);
 
     switch (item.category) {
       case "shirts":

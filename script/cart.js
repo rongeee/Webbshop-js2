@@ -6,7 +6,7 @@ const addToCart = e => {
   const clickedProduct = e.parentElement.querySelector(".product-card__name")
     .textContent;
 
-  localObj.products.forEach(item => {
+  localDb.products.forEach(item => {
     if (item.name.includes(clickedProduct)) {
       cart.products.push(item);
     }
