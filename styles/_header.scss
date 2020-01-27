@@ -1,9 +1,16 @@
-.header {
+.nav {
   background-color: black;
   padding: 1em;
+  color: white;
 
   &__list {
     display: flex;
     flex-flow: row wrap;
+    list-style: none;
+    justify-content: flex-end;
+  }
+
+  &__item {
+    margin: 0 1em;
   }
 }
