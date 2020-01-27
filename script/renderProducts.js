@@ -28,8 +28,8 @@ const cardTemplate = (name, price, img) => {
 const handleErrors = response => {
   if (!response.ok) {
     throw Error(
-      `Status: ${response.status},
-       Statustext: ${response.statusText},
+      `Status: ${response.status}
+       Statustext: ${response.statusText}
        Comment: Psst, checka vad fetchen pekar på`
     );
   }
