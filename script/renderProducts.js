@@ -27,13 +27,17 @@ const cardTemplate = (name, price, img) => {
 
 const handleErrors = response => {
   if (!response.ok) {
-    throw Error(response.statusText);
+    throw Error(
+      `Status: ${response.status},
+       Statustext: ${response.statusText},
+       Comment: Psst, checka vad fetchen pekar på`
+    );
   }
   return response.json();
 };
 
 async function getProducts() {
-  fetch("./products.json")
+  fetch("./404")
     .then(handleErrors)
     .then(data => {
       data.products.forEach(item => {
@@ -54,7 +58,6 @@ async function getProducts() {
     })
     .catch(error => {
       console.error(error);
-      console.error("Checka din .json va");
     });
 }
 
