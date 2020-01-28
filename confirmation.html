@@ -13,9 +13,9 @@
     <div class="total"></div>
   </body>
   <script>
-    const recList = document.querySelector('.receipt');
+    const recList = document.querySelector(".receipt");
 
-    const data = sessionStorage.getItem('cart');
+    const data = localStorage.getItem("cart");
     const parsedData = JSON.parse(data);
 
     // Write cart from session storage
@@ -23,7 +23,7 @@
       recList.innerHTML += `<li>${item.quantity} - ${item.name}</li>`;
     });
     // Write total price from session storage
-    document.querySelector('.total').innerHTML =
-      'TOTAL: ' + sessionStorage.getItem('total') + 'kr';
+    document.querySelector(".total").innerHTML =
+      "TOTAL: " + localStorage.getItem("total") + "kr";
   </script>
 </html>
