@@ -49,7 +49,7 @@ const addToCart = e => {
 // TODO: Needs to be updated to multiply by quantity zzz
 const getTotalPrice = () => {
   let price = 0;
-  cart.products.forEach(item => {
+  cart.forEach(item => {
     price += item.price;
   });
 
