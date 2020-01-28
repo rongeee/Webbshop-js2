@@ -20,7 +20,7 @@ const findProduct = (name, db) => {
 };
 
 const addToCart = e => {
-  const clickedProduct = e.parentElement.querySelector(".product-card__name")
+  const clickedProduct = e.parentElement.querySelector('.product-card__name')
     .textContent;
   const productInDb = findProduct(clickedProduct, localDb);
   const productInCart = findProduct(clickedProduct, cart);
@@ -42,8 +42,9 @@ const addToCart = e => {
       productInCart.quantity += 1;
     }
   } else {
-    console.error("The fuck did you do?");
+    console.error('The fuck did you do?');
   }
+  updateCart();
 };
 
 // TODO: Needs to be updated to multiply by quantity zzz
@@ -54,4 +55,12 @@ const getTotalPrice = () => {
   });
 
   return price;
+};
+
+const updateCart = () => {
+  const items = document.querySelector('.cart-fixed__cart-items');
+  items.innerHTML = '';
+  cart.products.forEach(item => {
+    items.innerHTML += `<div>${item.name} - ${item.quantity}`;
+  });
 };

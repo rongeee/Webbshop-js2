@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
 .nav {
   background-color: black;
   padding: 1em;
@@ -76,10 +77,35 @@
   grid-auto-rows: auto;
 }
 
+.cart-fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  height: 260px;
+  background: rgba(0, 0, 0, 0.877);
+  color: white;
+  padding: 20px;
+  border-top-left-radius: 20px;
+}
+
+.cart-fixed__cart-items {
+  height: 90%;
+  font-size: 18px;
+  margin: 0;
+  padding: 15px;
+  overflow-y: scroll;
+}
+
+.cart-fixed__headline {
+  margin: 0;
+}
+
 body {
   padding: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 /*# sourceMappingURL=main.css.map */

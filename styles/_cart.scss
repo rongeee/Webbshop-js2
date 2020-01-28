@@ -1,0 +1,22 @@
+.cart-fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  height: 260px;
+  background: rgba(0, 0, 0, 0.877);
+  color: white;
+  padding: 20px;
+  border-top-left-radius: 20px;
+
+  &__cart-items {
+    height: 90%;
+    font-size: 18px;
+    margin: 0;
+    padding: 15px;
+    overflow-y: scroll;
+  }
+  &__headline {
+    margin: 0;
+  }
+}
