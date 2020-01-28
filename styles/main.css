@@ -82,7 +82,7 @@
   bottom: 0;
   right: 0;
   width: 20%;
-  height: 260px;
+  height: auto;
   background: rgba(0, 0, 0, 0.877);
   color: white;
   padding: 20px;
@@ -90,15 +90,27 @@
 }
 
 .cart-fixed__cart-items {
-  height: 90%;
+  height: auto;
   font-size: 18px;
   margin: 0;
   padding: 15px;
-  overflow-y: scroll;
 }
 
 .cart-fixed__headline {
   margin: 0;
+}
+
+.cart-fixed__checkout {
+  display: inline-block;
+  color: white;
+  background: red;
+  padding: 10px 25px;
+  border-radius: 100px;
+  margin-top: 20px;
+}
+
+.cart-fixed__total {
+  font-weight: 700;
 }
 
 body {

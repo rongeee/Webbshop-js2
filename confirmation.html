@@ -9,5 +9,21 @@
   <body>
     <h1>Order recieved!</h1>
     <p>Your order is now being processed</p>
+    <ul class="receipt"></ul>
+    <div class="total"></div>
   </body>
+  <script>
+    const recList = document.querySelector('.receipt');
+
+    const data = sessionStorage.getItem('cart');
+    const parsedData = JSON.parse(data);
+
+    // Write cart from session storage
+    parsedData.forEach(item => {
+      recList.innerHTML += `<li>${item.quantity} - ${item.name}</li>`;
+    });
+    // Write total price from session storage
+    document.querySelector('.total').innerHTML =
+      'TOTAL: ' + sessionStorage.getItem('total') + 'kr';
+  </script>
 </html>

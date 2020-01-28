@@ -45,15 +45,22 @@ const addToCart = e => {
     console.error('The fuck did you do?');
   }
   updateCart();
+
+  // Session store cart items and total price
+  const tempStr = JSON.stringify(cart.products);
+  const tot = getTotalPrice();
+  sessionStorage.setItem('cart', tempStr);
+  sessionStorage.setItem('total', tot);
 };
 
-// TODO: Needs to be updated to multiply by quantity zzz
 const getTotalPrice = () => {
   let price = 0;
-  cart.forEach(item => {
-    price += item.price;
-  });
+  const totalPrice = document.querySelector('.cart-fixed__total');
 
+  cart.products.forEach(item => {
+    price += item.price * item.quantity;
+  });
+  totalPrice.textContent = `${price}kr`;
   return price;
 };
 
@@ -61,6 +68,11 @@ const updateCart = () => {
   const items = document.querySelector('.cart-fixed__cart-items');
   items.innerHTML = '';
   cart.products.forEach(item => {
-    items.innerHTML += `<div>${item.name} - ${item.quantity}`;
+    items.innerHTML += `<li>${item.name} - ${item.quantity}</li>`;
   });
+  getTotalPrice();
 };
+
+document.addEventListener('DOMContentLoaded', function() {
+  sessionStorage.clear();
+});
