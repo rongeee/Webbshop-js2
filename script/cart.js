@@ -87,6 +87,10 @@ const updateCart = () => {
   getTotalPrice();
 };
 
+const clearCart = () => {
+  localStorage.clear();
+};
+
 cartInit();
 updateCart();
 
