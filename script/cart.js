@@ -18,6 +18,11 @@ const cartInit = () => {
   }
 };
 
+const cartSync = () => {
+  let testProducts = JSON.stringify(testProducts);
+  localStorage.setItem(testCart.key, testProducts);
+};
+
 const findProduct = (name, db) => {
   let foundProduct = db.products.filter(item => {
     if (name === item.name) {
@@ -69,25 +74,33 @@ const addToCart = e => {
 
 const getTotalPrice = () => {
   let price = 0;
-  const totalPrice = document.querySelector(".cart-fixed__total");
 
   testCart.products.forEach(item => {
     price += item.price * item.quantity;
   });
-  totalPrice.textContent = `${price} kr`;
+
   return price;
 };
 
 const updateCart = () => {
   const items = document.querySelector(".cart-fixed__cart-items");
+  const totalPrice = document.querySelector(".cart-fixed__total");
+  const price = getTotalPrice();
+
   items.innerHTML = "";
   testCart.products.forEach(item => {
     items.innerHTML += `<li>${item.name} - ${item.quantity}</li>`;
   });
-  getTotalPrice();
+  totalPrice.textContent = `${price} kr`;
 };
 
 const clearCart = () => {
+  const items = document.querySelector(".cart-fixed__cart-items");
+  const totalPrice = document.querySelector(".cart-fixed__total");
+  items.innerHTML = "";
+  totalPrice.textContent = "";
+  testCart.products = [];
+  cartSync();
   localStorage.clear();
 };
 
