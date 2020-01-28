@@ -26,6 +26,11 @@
     border-radius: 100px;
     margin-top: 20px;
   }
+
+  &__clear {
+    border: none;
+    @extend .cart-fixed__checkout;
+  }
   &__total {
     font-weight: 700;
   }
