@@ -10,32 +10,20 @@ const testCart = {
   products: []
 };
 
-const cartInit = () => {
+const checkLocalStorage = () => {
   let testProducts = localStorage.getItem(testCart.key);
-  console.log(testCart.products);
   if (testProducts) {
     testCart.products = JSON.parse(testProducts);
   }
 };
 
-const cartSync = () => {
-  let testProducts = JSON.stringify(testProducts);
-  localStorage.setItem(testCart.key, testProducts);
-};
-
 const findProduct = (name, db) => {
   let foundProduct = db.products.filter(item => {
     if (name === item.name) {
-      return true;
+      return item;
     }
   });
-
-  // Checks if filter-function above returned true and if there is something in the first position
-  if (foundProduct && foundProduct[0]) {
-    return foundProduct[0];
-  } else {
-    return false;
-  }
+  return foundProduct[0];
 };
 
 const addToCart = e => {
@@ -63,9 +51,9 @@ const addToCart = e => {
   } else {
     console.error("The fuck did you do?");
   }
-  updateCart();
+  renderCart();
 
-  // Session store cart items and total price
+  // Local store cart items and total price
   const tempStr = JSON.stringify(testCart.products);
   //  const tot = getTotalPrice();
   // localStorage.setItem("cart", tempStr);
@@ -82,7 +70,7 @@ const getTotalPrice = () => {
   return price;
 };
 
-const updateCart = () => {
+const renderCart = () => {
   const items = document.querySelector(".cart-fixed__cart-items");
   const totalPrice = document.querySelector(".cart-fixed__total");
   const price = getTotalPrice();
@@ -100,12 +88,11 @@ const clearCart = () => {
   items.innerHTML = "";
   totalPrice.textContent = "";
   testCart.products = [];
-  cartSync();
   localStorage.clear();
 };
 
-cartInit();
-updateCart();
+checkLocalStorage();
+renderCart();
 
 // document.addEventListener("DOMContentLoaded", function() {
 //   localStorage.clear();
