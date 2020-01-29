@@ -17,6 +17,15 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 10px;
     grid-auto-rows: auto;
+    position: relative;
+    &::after {
+      content: "";
+      width: 100%;
+      background: linear-gradient(black, rgba(0, 0, 0, 0));
+      height: 100px;
+      position: sticky;
+      top: 0;
+    }
   }
   &__product-card {
     min-height: 200px;

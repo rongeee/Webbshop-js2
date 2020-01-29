@@ -85,6 +85,18 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 10px;
   grid-auto-rows: auto;
+  position: relative;
+}
+
+.products__card-container::after {
+  content: "";
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0)));
+  background: linear-gradient(black, rgba(0, 0, 0, 0));
+  height: 100px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 .products__product-card {
