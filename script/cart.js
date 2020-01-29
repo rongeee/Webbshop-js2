@@ -14,6 +14,7 @@ const checkLocalStorage = () => {
   let testProducts = localStorage.getItem(testCart.key);
   if (testProducts) {
     testCart.products = JSON.parse(testProducts);
+    return true;
   }
 };
 
@@ -71,6 +72,30 @@ const getTotalPrice = () => {
   return price;
 };
 
+const removeItem = e => {
+  const item = e.target.parentElement.childNodes[1].textContent;
+  const productInCart = findProduct(item, testCart);
+
+  testCart.products = testCart.products.filter(item => {
+    return item.name !== productInCart.name;
+  });
+
+  console.log(testCart.products);
+
+  updateLocalStorage();
+  renderCart();
+};
+
+const addBtnEvent = btns => {
+  console.log("hej");
+  btns.forEach(item => {
+    console.log(item);
+    item.addEventListener("click", e => {
+      removeItem(e);
+    });
+  });
+};
+
 const renderCart = () => {
   const items = document.querySelector(".cart-fixed__cart-items");
   const totalPrice = document.querySelector(".cart-fixed__total");
@@ -78,8 +103,16 @@ const renderCart = () => {
 
   items.innerHTML = "";
   testCart.products.forEach(item => {
-    items.innerHTML += `<li>${item.name} - ${item.quantity}</li>`;
+    items.innerHTML += `<li class="cart-fixed__item">
+                          <div class="cart-fixed__name">${item.name}</div>
+                          <div class="cart-fixed__qty">${item.quantity}</div> 
+                          <span class="cart-fixed__remove-btn">X</span>
+                        </li>`;
   });
+
+  const removeBtn = document.querySelectorAll(".cart-fixed__remove-btn");
+  console.log(removeBtn);
+  addBtnEvent(removeBtn);
   totalPrice.textContent = `${price} kr`;
 };
 
@@ -93,6 +126,7 @@ const clearCart = () => {
 };
 
 checkLocalStorage();
+console.log(checkLocalStorage());
 renderCart();
 
 // document.addEventListener("DOMContentLoaded", function() {
