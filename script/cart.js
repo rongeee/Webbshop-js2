@@ -27,7 +27,8 @@ const addToCart = e => {
   const clickedProduct = e.target.parentElement.querySelector(
     ".product-card__name"
   ).textContent;
-
+  const qtyInput = e.target.parentElement.querySelector(".product-card__qty");
+  console.log(parseInt(qtyInput.value));
   const productInDb = findProduct(clickedProduct, localDb);
   const productInCart = findProduct(clickedProduct, testCart);
 
@@ -36,7 +37,7 @@ const addToCart = e => {
     let tempObj = {
       name: productInDb.name,
       price: productInDb.price,
-      quantity: 1 // TODO? Change to html-input so users can add more than 1 items to cart?
+      quantity: parseInt(qtyInput.value) // TODO? Change to html-input so users can add more than 1 items to cart?
     };
 
     // Checks if the clicked item already exists in cart.
@@ -45,7 +46,7 @@ const addToCart = e => {
     if (!productInCart) {
       testCart.products.push(tempObj);
     } else {
-      productInCart.quantity += 1;
+      productInCart.quantity += parseInt(qtyInput.value);
     }
   } else {
     console.error("The fuck did you do?");
@@ -112,7 +113,10 @@ const renderCart = () => {
   testCart.products.forEach(item => {
     items.innerHTML += `<li class="cart-fixed__item">
                           <div class="cart-fixed__name">${item.name}</div>
-                          <input type="number" value="${item.quantity}" class="cart-fixed__qty">
+                          <input type="number" value="${
+                            item.quantity
+                          }" class="cart-fixed__qty">
+                          <div>${item.price * item.quantity} kr</div>
                           <span class="cart-fixed__remove-btn">X</span>
                         </li>`;
   });

@@ -21,6 +21,7 @@ const cardTemplate = (name, price, img) => {
     <button type="submit" class="product-card__buy-btn">
       Add to cart
     </button>
+    <input class="product-card__qty" value="1" type="number">
     </div>
     `;
 };
