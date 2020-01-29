@@ -87,7 +87,7 @@ const clearCart = () => {
   const items = document.querySelector(".cart-fixed__cart-items");
   const totalPrice = document.querySelector(".cart-fixed__total");
   items.innerHTML = "";
-  totalPrice.textContent = "";
+  totalPrice.textContent = "0 kr";
   testCart.products = [];
   localStorage.clear();
 };
