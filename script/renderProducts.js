@@ -18,7 +18,7 @@ const cardTemplate = (name, price, img) => {
     <div class="product-card__image"><img src=${img}></div>
     <h3 class="product-card__name">${name}</h3>
     <p class="product-card__price">${price}kr</p>
-    <button type="submit" class="product-card__buy-btn" onclick="addToCart(this)">
+    <button type="submit" class="product-card__buy-btn">
       Add to cart
     </button>
     </div>
@@ -67,6 +67,8 @@ async function getProducts() {
             break;
         }
       });
+      const addBtn = document.querySelectorAll(".product-card__buy-btn");
+      addBtnEvent(addBtn, addToCart);
     })
     .catch(error => {
       console.error(error);
