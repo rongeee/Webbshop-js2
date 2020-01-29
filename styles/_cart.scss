@@ -8,6 +8,7 @@
   color: white;
   padding: 20px;
   border-top-left-radius: 20px;
+  z-index: 999999;
 
   &__cart-items {
     height: auto;
@@ -33,5 +34,9 @@
   }
   &__total {
     font-weight: 700;
+  }
+  &__item {
+    display: flex;
+    justify-content: space-around;
   }
 }

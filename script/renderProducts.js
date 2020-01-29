@@ -68,7 +68,7 @@ async function getProducts() {
         }
       });
       const addBtn = document.querySelectorAll(".product-card__buy-btn");
-      addBtnEvent(addBtn, addToCart);
+      addBtnEvent(addBtn, addToCart, "click");
     })
     .catch(error => {
       console.error(error);

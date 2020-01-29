@@ -28,7 +28,6 @@ const addToCart = e => {
     ".product-card__name"
   ).textContent;
 
-  console.log(clickedProduct);
   const productInDb = findProduct(clickedProduct, localDb);
   const productInCart = findProduct(clickedProduct, testCart);
 
@@ -51,7 +50,6 @@ const addToCart = e => {
   } else {
     console.error("The fuck did you do?");
   }
-  renderCart();
   updateLocalStorage();
   // Local store cart items and total price
 };
@@ -59,6 +57,7 @@ const addToCart = e => {
 const updateLocalStorage = () => {
   const tempStr = JSON.stringify(testCart.products);
   localStorage.setItem(testCart.key, tempStr);
+  renderCart();
 };
 
 const getTotalPrice = () => {
@@ -82,12 +81,21 @@ const removeItem = e => {
   });
 
   updateLocalStorage();
-  renderCart();
 };
 
-const addBtnEvent = (btns, func) => {
+const changeQuantity = e => {
+  const val = e.target.parentElement.querySelector(".cart-fixed__qty");
+  const item = e.target.parentElement.querySelector(".cart-fixed__name")
+    .textContent;
+
+  const productInCart = findProduct(item, testCart);
+  productInCart.quantity = val.value;
+  updateLocalStorage();
+};
+
+const addBtnEvent = (btns, func, type) => {
   btns.forEach(item => {
-    item.addEventListener("click", e => {
+    item.addEventListener(type, e => {
       func(e);
     });
   });
@@ -102,13 +110,17 @@ const renderCart = () => {
   testCart.products.forEach(item => {
     items.innerHTML += `<li class="cart-fixed__item">
                           <div class="cart-fixed__name">${item.name}</div>
-                          <div class="cart-fixed__qty">${item.quantity}</div> 
+                          <input type="number" value="${item.quantity}" class="cart-fixed__qty">
                           <span class="cart-fixed__remove-btn">X</span>
                         </li>`;
   });
 
   const removeBtn = document.querySelectorAll(".cart-fixed__remove-btn");
-  addBtnEvent(removeBtn, removeItem);
+  const qtyInput = document.querySelectorAll(".cart-fixed__qty");
+
+  addBtnEvent(removeBtn, removeItem, "click");
+  addBtnEvent(qtyInput, changeQuantity, "change");
+
   totalPrice.textContent = `${price} kr`;
 };
 
@@ -120,14 +132,13 @@ const clearCart = () => {
   testCart.products = [];
   localStorage.clear();
 };
-if (document.querySelector(".cart-fixed__clear")) {
-  const clearBtn = document.querySelector(".cart-fixed__clear");
-  clearBtn.addEventListener("click", clearCart);
-  renderCart();
-}
 
 checkLocalStorage();
 
-// document.addEventListener("DOMContentLoaded", function() {
-//   localStorage.clear();
-// });
+document.addEventListener("DOMContentLoaded", function() {
+  if (document.querySelector(".cart-fixed__clear")) {
+    const clearBtn = document.querySelector(".cart-fixed__clear");
+    clearBtn.addEventListener("click", clearCart);
+    renderCart();
+  }
+});

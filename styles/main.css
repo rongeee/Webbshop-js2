@@ -144,6 +144,7 @@
   color: white;
   padding: 20px;
   border-top-left-radius: 20px;
+  z-index: 999999;
 }
 
 .cart-fixed__cart-items {
@@ -172,6 +173,14 @@
 
 .cart-fixed__total {
   font-weight: 700;
+}
+
+.cart-fixed__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 body {
