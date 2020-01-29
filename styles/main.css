@@ -26,7 +26,10 @@
 .hero {
   height: 100vh;
   width: 100%;
-  background: mediumslateblue;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.39)), to(rgba(0, 0, 0, 0.651))), url(https://source.unsplash.com/random);
+  background: linear-gradient(rgba(0, 0, 0, 0.39), rgba(0, 0, 0, 0.651)), url(https://source.unsplash.com/random);
+  background-size: cover;
+  background-repeat: no-repeat;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -53,8 +56,11 @@
       -ms-flex-align: center;
           align-items: center;
   color: white;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 3em;
+}
+
+.hero__content h1 {
+  font-size: 3rem;
+  margin-bottom: 0;
 }
 
 .products {
@@ -63,18 +69,57 @@
 
 .products__container {
   margin: 0 auto;
-  padding: 3em;
-  width: 80%;
-  background-color: red;
   max-width: 1200px;
+}
+
+.products__container--item {
+  margin: 20px 0;
+  background: #e2e2e2;
+  padding: 20px;
 }
 
 .products__card-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: (minmax(250px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 10px;
   grid-auto-rows: auto;
+}
+
+.products__product-card {
+  min-height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: white;
+  padding: 20px;
+}
+
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+}
+
+.product-card__buy-btn {
+  padding: 10px;
+  background: white;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 100px;
+}
+
+.product-card__buy-btn:hover {
+  background: black;
+  color: white;
+  cursor: pointer;
 }
 
 .cart-fixed {
@@ -118,6 +163,7 @@ body {
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+  position: relative;
 }
 /*# sourceMappingURL=main.css.map */

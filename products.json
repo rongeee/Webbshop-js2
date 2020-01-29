@@ -4,55 +4,64 @@
       "name": "Blue Shirt",
       "price": 499,
       "quantity": 13,
-      "category": "shirts"
+      "category": "shirts",
+      "image": "https://source.unsplash.com/400x400/?blue-shirt"
     },
     {
       "name": "Red Shirt",
       "price": 399,
       "quantity": 16,
-      "category": "shirts"
+      "category": "shirts",
+      "image": "https://source.unsplash.com/400x400/?red-shirt"
     },
     {
       "name": "Yellow Shirt",
       "price": 199,
       "quantity": 11,
-      "category": "shirts"
+      "category": "shirts",
+      "image": "https://source.unsplash.com/400x400/?yellow-shirt"
     },
     {
       "name": "Top Hat",
       "price": 1999,
       "quantity": 11,
-      "category": "hats"
+      "category": "hats",
+      "image": "https://source.unsplash.com/400x400/?top-hat"
     },
     {
       "name": "Small Hat",
       "price": 999,
       "quantity": 8,
-      "category": "hats"
+      "category": "hats",
+      "image": "https://source.unsplash.com/400x400/?hat"
     },
     {
       "name": "Nice Hat",
       "price": 599,
       "quantity": 11,
-      "category": "hats"
+      "category": "hats",
+      "image": "https://source.unsplash.com/400x400/?hat,nice"
     },
     {
       "name": "Sneakers",
       "price": 2299,
       "quantity": 29,
-      "category": "shoes"
+      "category": "shoes",
+      "image": "https://source.unsplash.com/400x400/?sneakers"
     },
     {
       "name": "Dress Shoes",
       "price": 5999,
       "quantity": 3,
-      "category": "shoes"
+      "category": "shoes",
+      "image": "https://source.unsplash.com/400x400/?dress-shoes"
     },
     {
       "name": "Flip Flops",
       "price": 99,
       "quantity": 111,
-      "category": "shoes"
+      "category": "shoes",
+      "image": "https://source.unsplash.com/400x400/?flip-flops"
     }
   ]
 }

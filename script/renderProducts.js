@@ -15,7 +15,7 @@ const localDb = {
 const cardTemplate = (name, price, img) => {
   return `
     <div class="products__product-card">
-    <div class="product-card__image"></div>
+    <div class="product-card__image"><img src=${img}></div>
     <h3 class="product-card__name">${name}</h3>
     <p class="product-card__price">${price}kr</p>
     <button type="submit" class="product-card__buy-btn" onclick="addToCart(this)">
@@ -45,13 +45,25 @@ async function getProducts() {
 
         switch (item.category) {
           case "shirts":
-            productShirts.innerHTML += cardTemplate(item.name, item.price);
+            productShirts.innerHTML += cardTemplate(
+              item.name,
+              item.price,
+              item.image
+            );
             break;
           case "hats":
-            productHats.innerHTML += cardTemplate(item.name, item.price);
+            productHats.innerHTML += cardTemplate(
+              item.name,
+              item.price,
+              item.image
+            );
             break;
           case "shoes":
-            productShoes.innerHTML += cardTemplate(item.name, item.price);
+            productShoes.innerHTML += cardTemplate(
+              item.name,
+              item.price,
+              item.image
+            );
             break;
         }
       });
