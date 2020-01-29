@@ -14,22 +14,22 @@
     <a href="./index.html">Back to shop</a>
     <script src="./script/cart.js"></script>
     <script>
-        const recList = document.querySelector(".receipt");
+      const recList = document.querySelector(".receipt");
 
-        checkLocalStorage();
+      checkLocalStorage();
 
-        const price = getTotalPrice();
+      const price = getTotalPrice();
 
-        const renderConfirm() {
+      const renderConfirm = () => {
         testCart.products.forEach(item => {
           recList.innerHTML += `<li>${item.quantity} - ${item.name}</li>`;
         });
         // Write total price from session storage
         document.querySelector(".total").innerHTML = `${price} kr`;
-      }
-
-        testCart.products = [];
-        localStorage.clear();
+      };
+      renderConfirm();
+      testCart.products = [];
+      localStorage.clear();
     </script>
   </body>
 </html>
