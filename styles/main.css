@@ -145,13 +145,17 @@
   margin: 0;
 }
 
-.cart-fixed__checkout {
+.cart-fixed__checkout, .cart-fixed__clear {
   display: inline-block;
   color: white;
   background: red;
   padding: 10px 25px;
   border-radius: 100px;
   margin-top: 20px;
+}
+
+.cart-fixed__clear {
+  border: none;
 }
 
 .cart-fixed__total {
