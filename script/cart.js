@@ -50,14 +50,16 @@ const addToCart = e => {
   } else {
     console.error("The fuck did you do?");
   }
-  updateLocalStorage();
+  updateLocalStorage(renderCart);
   // Local store cart items and total price
 };
 
-const updateLocalStorage = () => {
+const updateLocalStorage = cb => {
   const tempStr = JSON.stringify(testCart.products);
   localStorage.setItem(testCart.key, tempStr);
-  renderCart();
+  if (cb) {
+    cb();
+  }
 };
 
 const getTotalPrice = () => {
@@ -80,7 +82,7 @@ const removeItem = e => {
     return item.name !== productInCart.name;
   });
 
-  updateLocalStorage();
+  updateLocalStorage(renderCart);
 };
 
 const changeQuantity = e => {
@@ -90,7 +92,7 @@ const changeQuantity = e => {
 
   const productInCart = findProduct(item, testCart);
   productInCart.quantity = val.value;
-  updateLocalStorage();
+  updateLocalStorage(renderCart);
 };
 
 const addBtnEvent = (btns, func, type) => {

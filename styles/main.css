@@ -88,17 +88,6 @@
   position: relative;
 }
 
-.products__card-container::after {
-  content: "";
-  width: 100%;
-  background: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0)));
-  background: linear-gradient(black, rgba(0, 0, 0, 0));
-  height: 100px;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-
 .products__product-card {
   min-height: 200px;
   display: -webkit-box;
