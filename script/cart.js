@@ -1,9 +1,5 @@
 // TODO: Add localStorage-handling?
 
-let cart = {
-  products: []
-};
-
 const testCart = {
   // Key should be randomized in a real project. Used as reference point and unique identifier
   key: "qwerqwerqwerqwerqwerqwer",
@@ -28,8 +24,11 @@ const findProduct = (name, db) => {
 };
 
 const addToCart = e => {
-  const clickedProduct = e.parentElement.querySelector(".product-card__name")
-    .textContent;
+  const clickedProduct = e.target.parentElement.querySelector(
+    ".product-card__name"
+  ).textContent;
+
+  console.log(clickedProduct);
   const productInDb = findProduct(clickedProduct, localDb);
   const productInCart = findProduct(clickedProduct, testCart);
 
@@ -73,25 +72,23 @@ const getTotalPrice = () => {
 };
 
 const removeItem = e => {
-  const item = e.target.parentElement.childNodes[1].textContent;
+  const item = e.target.parentElement.querySelector(".cart-fixed__name")
+    .textContent;
+
   const productInCart = findProduct(item, testCart);
 
   testCart.products = testCart.products.filter(item => {
     return item.name !== productInCart.name;
   });
 
-  console.log(testCart.products);
-
   updateLocalStorage();
   renderCart();
 };
 
-const addBtnEvent = btns => {
-  console.log("hej");
+const addBtnEvent = (btns, func) => {
   btns.forEach(item => {
-    console.log(item);
     item.addEventListener("click", e => {
-      removeItem(e);
+      func(e);
     });
   });
 };
@@ -111,8 +108,7 @@ const renderCart = () => {
   });
 
   const removeBtn = document.querySelectorAll(".cart-fixed__remove-btn");
-  console.log(removeBtn);
-  addBtnEvent(removeBtn);
+  addBtnEvent(removeBtn, removeItem);
   totalPrice.textContent = `${price} kr`;
 };
 
@@ -124,10 +120,13 @@ const clearCart = () => {
   testCart.products = [];
   localStorage.clear();
 };
+if (document.querySelector(".cart-fixed__clear")) {
+  const clearBtn = document.querySelector(".cart-fixed__clear");
+  clearBtn.addEventListener("click", clearCart);
+  renderCart();
+}
 
 checkLocalStorage();
-console.log(checkLocalStorage());
-renderCart();
 
 // document.addEventListener("DOMContentLoaded", function() {
 //   localStorage.clear();

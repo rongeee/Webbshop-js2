@@ -11,19 +11,25 @@
     <p>Your order is now being processed</p>
     <ul class="receipt"></ul>
     <div class="total"></div>
+    <a href="./index.html">Back to shop</a>
   </body>
+  <script src="./script/cart.js"></script>
   <script>
     const recList = document.querySelector(".receipt");
 
-    const data = localStorage.getItem("cart");
-    const parsedData = JSON.parse(data);
+    const data = localStorage.getItem(testCart.key);
+    testCart.products = JSON.parse(data);
+
+    const price = getTotalPrice();
 
     // Write cart from session storage
-    parsedData.forEach(item => {
+    testCart.products.forEach(item => {
       recList.innerHTML += `<li>${item.quantity} - ${item.name}</li>`;
     });
     // Write total price from session storage
-    document.querySelector(".total").innerHTML =
-      "TOTAL: " + localStorage.getItem("total") + "kr";
+    document.querySelector(".total").innerHTML = `${price} kr`;
+
+    testCart.products = [];
+    updateLocalStorage();
   </script>
 </html>
