@@ -52,11 +52,12 @@ const addToCart = e => {
     console.error("The fuck did you do?");
   }
   renderCart();
-
+  updateLocalStorage();
   // Local store cart items and total price
+};
+
+const updateLocalStorage = () => {
   const tempStr = JSON.stringify(testCart.products);
-  //  const tot = getTotalPrice();
-  // localStorage.setItem("cart", tempStr);
   localStorage.setItem(testCart.key, tempStr);
 };
 
