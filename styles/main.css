@@ -128,13 +128,17 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  width: calc(100vw - 40px);
+  width: calc(100vw - 80px);
   height: auto;
   background: rgba(0, 0, 0, 0.877);
   color: white;
   padding: 20px;
   border-top-left-radius: 20px;
   z-index: 999999;
+  -webkit-transition-duration: 200ms;
+          transition-duration: 200ms;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
 }
 
 .cart-fixed__cart-items {
@@ -146,6 +150,10 @@
 
 .cart-fixed__headline {
   margin: 0;
+}
+
+.cart-fixed__headline:hover {
+  cursor: pointer;
 }
 
 .cart-fixed__checkout, .cart-fixed__clear {
