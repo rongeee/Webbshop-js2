@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap");
 .nav {
   background-color: black;
   padding: 1em;
@@ -75,7 +76,7 @@
 
 .products__container--item {
   margin: 20px 0;
-  background: #e2e2e2;
+  background: #63f1f1;
   padding: 20px;
 }
 
@@ -103,6 +104,11 @@
           justify-content: space-between;
   background: white;
   padding: 20px;
+}
+
+.products__headline {
+  text-align: center;
+  font-size: 2rem;
 }
 
 .product-card__image {
@@ -181,25 +187,37 @@
   margin: 0;
 }
 
-.cart-fixed__headline:hover {
-  cursor: pointer;
-}
-
 .cart-fixed__checkout, .cart-fixed__clear {
   display: inline-block;
   color: white;
-  background: red;
+  background: #63f1f1;
   padding: 10px 25px;
   border-radius: 100px;
   margin-top: 20px;
+  color: black;
+  text-decoration: none;
+  -webkit-transition-duration: 100ms;
+          transition-duration: 100ms;
+}
+
+.cart-fixed__checkout:hover, .cart-fixed__clear:hover {
+  background: #63bdf1;
+  cursor: pointer;
 }
 
 .cart-fixed__clear {
   border: none;
+  background: #ff4f4f;
+  font-size: 1em;
+}
+
+.cart-fixed__clear:hover {
+  background: #eb4444;
 }
 
 .cart-fixed__total {
   font-weight: 700;
+  font-size: 1.3rem;
 }
 
 .cart-fixed__item {
@@ -213,7 +231,7 @@
           align-items: center;
   padding: 17px;
   margin-bottom: 5px;
-  border-right: 1px solid red;
+  border-right: 1px solid #ff4f4f;
   background: rgba(255, 255, 255, 0.212);
 }
 
@@ -245,7 +263,7 @@
 }
 
 .cart-fixed__remove-btn:hover {
-  color: #ff7979;
+  color: #ff4f4f;
 }
 
 .cart-fixed__name-total-wrap {
@@ -258,8 +276,12 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid #ff4f4f;
   margin-bottom: 13px;
+}
+
+.cart-fixed__name-total-wrap:hover {
+  cursor: pointer;
 }
 
 body {
@@ -267,7 +289,7 @@ body {
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
   position: relative;
+  font-family: 'Quicksand', sans-serif;
 }
 /*# sourceMappingURL=main.css.map */

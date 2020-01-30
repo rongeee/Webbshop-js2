@@ -1,5 +1,5 @@
 const cart = document.querySelector('.cart-fixed');
-const hideBtn = document.querySelector('.cart-fixed__headline');
+const hideBtn = document.querySelector('.cart-fixed__name-total-wrap');
 cart.style = 'transform: translateY(0px)';
 
 hideBtn.addEventListener('click', function() {

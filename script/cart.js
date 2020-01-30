@@ -127,7 +127,7 @@ const renderCart = () => {
                             item.quantity
                           }" class="cart-fixed__qty">
                           <div>${item.price * item.quantity} kr</div>
-                          <span class="cart-fixed__remove-btn">Remove</span>
+                          <span class="cart-fixed__remove-btn">remove</span>
                         </li>`;
   });
 
