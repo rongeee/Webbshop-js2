@@ -167,11 +167,29 @@ const clearCart = () => {
   localStorage.clear();
 };
 
+const renderCheckout = e => {
+  e.preventDefault();
+  const target = e.target.href;
+  const loadPopup = `<div class="load-popup">
+                        <h2 class="load-popup__headline">Your order is being processed!</h2>
+                        <img class="load-popup__animation" src="./images/loading.svg">
+                      </div>`;
+
+  document.body.innerHTML = loadPopup;
+
+  setTimeout(function() {
+    window.location = target;
+  }, 2500);
+};
+
 checkLocalStorage();
 
 document.addEventListener("DOMContentLoaded", function() {
   if (document.querySelector(".cart-fixed__clear")) {
+    const purchaseBtn = document.querySelector(".cart-fixed__checkout");
     const clearBtn = document.querySelector(".cart-fixed__clear");
+
+    purchaseBtn.addEventListener("click", renderCheckout);
     clearBtn.addEventListener("click", clearCart);
     renderCart();
   }
