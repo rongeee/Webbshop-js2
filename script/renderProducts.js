@@ -1,11 +1,11 @@
 const productShirts = document.querySelector(
-  ".products__shirts .products__card-container"
+  '.products__shirts .products__card-container'
 );
 const productHats = document.querySelector(
-  ".products__hats .products__card-container"
+  '.products__hats .products__card-container'
 );
 const productShoes = document.querySelector(
-  ".products__shoes .products__card-container"
+  '.products__shoes .products__card-container'
 );
 
 const localDb = {
@@ -18,10 +18,12 @@ const cardTemplate = (name, price, img) => {
     <div class="product-card__image"><img src=${img}></div>
     <h3 class="product-card__name">${name}</h3>
     <p class="product-card__price">${price}kr</p>
-    <button type="submit" class="product-card__buy-btn">
-      Add to cart
-    </button>
-    <input class="product-card__qty" value="1" type="number">
+    <div class="product-card__btn-qty-wrap">
+      <button type="submit" class="product-card__buy-btn">
+        Add to cart
+      </button>
+      <input class="product-card__qty" value="1" type="number">
+    </div>
     </div>
     `;
 };
@@ -38,28 +40,28 @@ const handleErrors = response => {
 };
 
 async function getProducts() {
-  fetch("./products.json")
+  fetch('./products.json')
     .then(handleErrors)
     .then(data => {
       data.products.forEach(item => {
         localDb.products.push(item);
 
         switch (item.category) {
-          case "shirts":
+          case 'shirts':
             productShirts.innerHTML += cardTemplate(
               item.name,
               item.price,
               item.image
             );
             break;
-          case "hats":
+          case 'hats':
             productHats.innerHTML += cardTemplate(
               item.name,
               item.price,
               item.image
             );
             break;
-          case "shoes":
+          case 'shoes':
             productShoes.innerHTML += cardTemplate(
               item.name,
               item.price,
@@ -68,8 +70,8 @@ async function getProducts() {
             break;
         }
       });
-      const addBtn = document.querySelectorAll(".product-card__buy-btn");
-      addBtnEvent(addBtn, addToCart, "click");
+      const addBtn = document.querySelectorAll('.product-card__buy-btn');
+      addBtnEvent(addBtn, addToCart, 'click');
     })
     .catch(error => {
       console.error(error);

@@ -10,3 +10,21 @@ hideBtn.addEventListener('click', function() {
     cart.style = 'transform: translateY(' + (cart.clientHeight - 60) + 'px)';
   }
 });
+
+// Makes sure cart does not stick up more than it should when cart item list gets taller
+document.addEventListener('DOMContentLoaded', function() {
+  let addBtns;
+  setTimeout(() => {
+    addBtns = document.querySelectorAll('.product-card__buy-btn');
+    console.log(addBtns);
+
+    addBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (cart.style.transform != 'translateY(0px)') {
+          cart.style =
+            'transform: translateY(' + (cart.clientHeight - 60) + 'px)';
+        }
+      });
+    });
+  }, 200);
+});
