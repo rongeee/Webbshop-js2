@@ -161,7 +161,9 @@ const renderCart = () => {
 const clearCart = () => {
   const items = document.querySelector(".cart-fixed__cart-items");
   const totalPrice = document.querySelector(".cart-fixed__total");
+  const totalProductQty = document.querySelector(".cart-fixed__total-qty");
   items.innerHTML = "";
+  totalProductQty.textContent = "0";
   totalPrice.textContent = "0 kr";
   testCart.products = [];
   localStorage.clear();
