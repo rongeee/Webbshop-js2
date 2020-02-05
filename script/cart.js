@@ -2,7 +2,7 @@
 
 const cart = {
   // Key should be randomized in a real project. Used as reference point and unique identifier
-  key: "qwerqwerqwerqwerqwerqwer",
+  key: 'qwerqwerqwerqwerqwerqwer',
   products: []
 };
 
@@ -25,9 +25,9 @@ const findProduct = (name, db) => {
 
 const addToCart = e => {
   const clickedProduct = e.target.parentElement.parentElement.querySelector(
-    ".product-card__name"
+    '.product-card__name'
   ).textContent;
-  const qtyInput = e.target.parentElement.querySelector(".product-card__qty");
+  const qtyInput = e.target.parentElement.querySelector('.product-card__qty');
   const productInDb = findProduct(clickedProduct, localDb);
   const productInCart = findProduct(clickedProduct, cart);
 
@@ -49,7 +49,7 @@ const addToCart = e => {
       productInCart.quantity += parseInt(qtyInput.value);
     }
   } else {
-    console.error("The fuck did you do?");
+    console.error('The fuck did you do?');
   }
   updateLocalStorage(renderCart);
   // Local store cart items and total price
@@ -74,14 +74,14 @@ const getTotalPrice = () => {
 };
 
 const increaseQty = e => {
-  const inputQty = e.target.parentElement.querySelector(".product-card__qty");
+  const inputQty = e.target.parentElement.querySelector('.product-card__qty');
   let realValue = parseInt(inputQty.value);
   realValue += 1;
   inputQty.value = realValue;
 };
 
 const decreaseQty = e => {
-  const inputQty = e.target.parentElement.querySelector(".product-card__qty");
+  const inputQty = e.target.parentElement.querySelector('.product-card__qty');
   let realValue = parseInt(inputQty.value);
 
   if (realValue > 1) {
@@ -100,7 +100,7 @@ const getTotalQty = () => {
 };
 
 const removeItem = e => {
-  const item = e.target.parentElement.querySelector(".cart-fixed__name")
+  const item = e.target.parentElement.querySelector('.cart-fixed__name')
     .textContent;
 
   const productInCart = findProduct(item, cart);
@@ -113,12 +113,17 @@ const removeItem = e => {
 };
 
 const changeQuantity = e => {
-  const val = e.target.parentElement.querySelector(".cart-fixed__qty");
-  const item = e.target.parentElement.querySelector(".cart-fixed__name")
+  const val = e.target.parentElement.querySelector('.cart-fixed__qty');
+  const item = e.target.parentElement.querySelector('.cart-fixed__name')
     .textContent;
 
   const productInCart = findProduct(item, cart);
   productInCart.quantity = val.value;
+  if (val.value <= 0) {
+    cart.products = cart.products.filter(item => {
+      return item.name !== productInCart.name;
+    });
+  }
   updateLocalStorage(renderCart);
 };
 
@@ -131,13 +136,13 @@ const addBtnEvent = (btns, func, type) => {
 };
 
 const renderCart = () => {
-  const items = document.querySelector(".cart-fixed__cart-items");
-  const totalPrice = document.querySelector(".cart-fixed__total");
-  const totalQty = document.querySelector(".cart-fixed__total-qty");
+  const items = document.querySelector('.cart-fixed__cart-items');
+  const totalPrice = document.querySelector('.cart-fixed__total');
+  const totalQty = document.querySelector('.cart-fixed__total-qty');
   const price = getTotalPrice();
   const qty = getTotalQty();
 
-  items.innerHTML = "";
+  items.innerHTML = '';
   cart.products.forEach(item => {
     items.innerHTML += `<li class="cart-fixed__item">
                           <div class="cart-fixed__name">${item.name}</div>
@@ -149,23 +154,23 @@ const renderCart = () => {
                         </li>`;
   });
 
-  const removeBtn = document.querySelectorAll(".cart-fixed__remove-btn");
-  const qtyInput = document.querySelectorAll(".cart-fixed__qty");
+  const removeBtn = document.querySelectorAll('.cart-fixed__remove-btn');
+  const qtyInput = document.querySelectorAll('.cart-fixed__qty');
 
-  addBtnEvent(removeBtn, removeItem, "click");
-  addBtnEvent(qtyInput, changeQuantity, "change");
+  addBtnEvent(removeBtn, removeItem, 'click');
+  addBtnEvent(qtyInput, changeQuantity, 'change');
 
   totalPrice.textContent = `${price} kr`;
   totalQty.textContent = `${qty}`;
 };
 
 const clearCart = () => {
-  const items = document.querySelector(".cart-fixed__cart-items");
-  const totalPrice = document.querySelector(".cart-fixed__total");
-  const totalProductQty = document.querySelector(".cart-fixed__total-qty");
-  items.innerHTML = "";
-  totalProductQty.textContent = "0";
-  totalPrice.textContent = "0 kr";
+  const items = document.querySelector('.cart-fixed__cart-items');
+  const totalPrice = document.querySelector('.cart-fixed__total');
+  const totalProductQty = document.querySelector('.cart-fixed__total-qty');
+  items.innerHTML = '';
+  totalProductQty.textContent = '0';
+  totalPrice.textContent = '0 kr';
   cart.products = [];
   localStorage.clear();
 };
@@ -187,13 +192,13 @@ const renderCheckout = e => {
 
 checkLocalStorage();
 
-document.addEventListener("DOMContentLoaded", function() {
-  if (document.querySelector(".cart-fixed__clear")) {
-    const purchaseBtn = document.querySelector(".cart-fixed__checkout");
-    const clearBtn = document.querySelector(".cart-fixed__clear");
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.querySelector('.cart-fixed__clear')) {
+    const purchaseBtn = document.querySelector('.cart-fixed__checkout');
+    const clearBtn = document.querySelector('.cart-fixed__clear');
 
-    purchaseBtn.addEventListener("click", renderCheckout);
-    clearBtn.addEventListener("click", clearCart);
+    purchaseBtn.addEventListener('click', renderCheckout);
+    clearBtn.addEventListener('click', clearCart);
     renderCart();
   }
 });
