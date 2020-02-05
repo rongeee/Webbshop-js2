@@ -1,13 +1,3 @@
-const productShirts = document.querySelector(
-  ".products__shirts .products__card-container"
-);
-const productHats = document.querySelector(
-  ".products__hats .products__card-container"
-);
-const productShoes = document.querySelector(
-  ".products__shoes .products__card-container"
-);
-
 const localDb = {
   products: []
 };
@@ -43,43 +33,25 @@ const handleErrors = response => {
   return response.json();
 };
 
-async function getProducts() {
-  fetch("./products.json")
+function getProducts() {
+  fetch('./products.json')
     .then(handleErrors)
     .then(data => {
       data.products.forEach(item => {
         localDb.products.push(item);
 
-        switch (item.category) {
-          case "shirts":
-            productShirts.innerHTML += cardTemplate(
-              item.name,
-              item.price,
-              item.image
-            );
-            break;
-          case "hats":
-            productHats.innerHTML += cardTemplate(
-              item.name,
-              item.price,
-              item.image
-            );
-            break;
-          case "shoes":
-            productShoes.innerHTML += cardTemplate(
-              item.name,
-              item.price,
-              item.image
-            );
-            break;
-        }
+        let container = document.querySelector(
+          `.products__${item.category} .products__card-container`
+        );
+        container.innerHTML += cardTemplate(item.name, item.price, item.image);
       });
-      const addBtn = document.querySelectorAll(".product-card__buy-btn");
-      const upQtyBtn = document.querySelectorAll(".product-card__up-qty");
-      const negQtyBtn = document.querySelectorAll(".product-card__neg-qty");
-      addBtnEvent(upQtyBtn, increaseQty, "click");
-      addBtnEvent(negQtyBtn, decreaseQty, "click");
-      addBtnEvent(addBtn, addToCart, "click");
+
+      const addBtn = document.querySelectorAll('.product-card__buy-btn');
+      const upQtyBtn = document.querySelectorAll('.product-card__up-qty');
+      const negQtyBtn = document.querySelectorAll('.product-card__neg-qty');
+      addBtnEvent(upQtyBtn, increaseQty, 'click');
+      addBtnEvent(negQtyBtn, decreaseQty, 'click');
+      addBtnEvent(addBtn, addToCart, 'click');
     })
     .catch(error => {
       console.error(error);

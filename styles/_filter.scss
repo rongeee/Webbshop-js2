@@ -1,0 +1,14 @@
+.filter {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  select {
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 100px;
+  }
+}
+
+.hidden {
+  display: none;
+}
