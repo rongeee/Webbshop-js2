@@ -8,6 +8,7 @@ const cart = {
 
 const checkLocalStorage = () => {
   let testProducts = localStorage.getItem(cart.key);
+  console.log(testProducts);
   if (testProducts) {
     cart.products = JSON.parse(testProducts);
     return true;
@@ -30,29 +31,39 @@ const addToCart = e => {
   const qtyInput = e.target.parentElement.querySelector('.product-card__qty');
   const productInDb = findProduct(clickedProduct, localDb);
   const productInCart = findProduct(clickedProduct, cart);
-
-  // Checks the productInDb variable to see if it contains a product
-  if (productInDb) {
-    let tempObj = {
-      name: productInDb.name,
-      price: productInDb.price,
-      quantity: parseInt(qtyInput.value),
-      image: productInDb.image
-    };
-
-    // Checks if the clicked item already exists in cart.
-    // Pushes the product to the cart if it does not exist
-    // Raises quantity by 1 if it already exists
-    if (!productInCart) {
-      cart.products.push(tempObj);
-    } else {
-      productInCart.quantity += parseInt(qtyInput.value);
-    }
-  } else {
-    console.error('The fuck did you do?');
+  // Checks so the user has not edited the amount in DevTools and has set a negative number
+  if (qtyInput.value <= 0) {
+    qtyInput.value = 1;
+    console.log(qtyInput.value);
   }
-  updateLocalStorage(renderCart);
-  // Local store cart items and total price
+  if (productInDb.quantity < qtyInput.value) {
+    alert(
+      `You can't buy that many items we only have ${productInDb.quantity} left in stock`
+    );
+  } else {
+    // Checks the productInDb variable to see if it contains a product
+    if (productInDb) {
+      let tempObj = {
+        name: productInDb.name,
+        price: productInDb.price,
+        quantity: parseInt(qtyInput.value),
+        image: productInDb.image
+      };
+      // Checks if the clicked item already exists in cart.
+      // Pushes the product to the cart if it does not exist
+      // Raises quantity by 1 if it already exists
+
+      if (!productInCart) {
+        cart.products.push(tempObj);
+      } else {
+        productInCart.quantity += parseInt(qtyInput.value);
+      }
+    } else {
+      console.error('The fuck did you do?');
+    }
+    updateLocalStorage(renderCart);
+    // Local store cart items and total price
+  }
 };
 
 const updateLocalStorage = cb => {
@@ -87,6 +98,28 @@ const decreaseQty = e => {
   if (realValue > 1) {
     realValue -= 1;
     inputQty.value = realValue;
+  }
+};
+
+const handleQty = e => {
+  const inputQty = e.target.parentElement.querySelector('.product-card__qty');
+
+  if (inputQty.value <= 0) {
+    inputQty.value = 1;
+  }
+};
+
+const handleCartQty = e => {
+  const clickedProduct = e.target.parentElement.querySelector(
+    '.cart-fixed__name'
+  ).textContent;
+  const inputQty = e.target.parentElement.querySelector('.cart-fixed__qty');
+  const productInDb = findProduct(clickedProduct, localDb);
+  const productInCart = findProduct(clickedProduct, cart);
+  if (inputQty.value > productInDb.quantity) {
+    productInCart.quantity = productInDb.quantity;
+    updateLocalStorage(renderCart);
+    alert('Stock limit reached');
   }
 };
 
@@ -159,6 +192,7 @@ const renderCart = () => {
 
   addBtnEvent(removeBtn, removeItem, 'click');
   addBtnEvent(qtyInput, changeQuantity, 'change');
+  addBtnEvent(qtyInput, handleCartQty, 'change');
 
   totalPrice.textContent = `${price} kr`;
   totalQty.textContent = `${qty}`;

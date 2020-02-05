@@ -49,8 +49,10 @@ function getProducts() {
       const addBtn = document.querySelectorAll('.product-card__buy-btn');
       const upQtyBtn = document.querySelectorAll('.product-card__up-qty');
       const negQtyBtn = document.querySelectorAll('.product-card__neg-qty');
+      const qtyInput = document.querySelectorAll('.product-card__qty');
       addBtnEvent(upQtyBtn, increaseQty, 'click');
       addBtnEvent(negQtyBtn, decreaseQty, 'click');
+      addBtnEvent(qtyInput, handleQty, 'change');
       addBtnEvent(addBtn, addToCart, 'click');
     })
     .catch(error => {

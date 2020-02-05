@@ -3,7 +3,6 @@ const hideBtn = document.querySelector('.cart-fixed__name-total-wrap');
 cartContainer.style = 'transform: translateY(0px)';
 
 hideBtn.addEventListener('click', function() {
-  console.log(cartContainer.style.transform);
   if (cartContainer.style.transform != 'translateY(0px)') {
     cartContainer.style = 'transform: translateY(0px)';
   } else {
