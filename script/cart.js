@@ -1,15 +1,15 @@
 // TODO: Add localStorage-handling?
 
-const testCart = {
+const cart = {
   // Key should be randomized in a real project. Used as reference point and unique identifier
   key: "qwerqwerqwerqwerqwerqwer",
   products: []
 };
 
 const checkLocalStorage = () => {
-  let testProducts = localStorage.getItem(testCart.key);
+  let testProducts = localStorage.getItem(cart.key);
   if (testProducts) {
-    testCart.products = JSON.parse(testProducts);
+    cart.products = JSON.parse(testProducts);
     return true;
   }
 };
@@ -29,21 +29,22 @@ const addToCart = e => {
   ).textContent;
   const qtyInput = e.target.parentElement.querySelector(".product-card__qty");
   const productInDb = findProduct(clickedProduct, localDb);
-  const productInCart = findProduct(clickedProduct, testCart);
+  const productInCart = findProduct(clickedProduct, cart);
 
   // Checks the productInDb variable to see if it contains a product
   if (productInDb) {
     let tempObj = {
       name: productInDb.name,
       price: productInDb.price,
-      quantity: parseInt(qtyInput.value) // TODO? Change to html-input so users can add more than 1 items to cart?
+      quantity: parseInt(qtyInput.value),
+      image: productInDb.image
     };
 
     // Checks if the clicked item already exists in cart.
     // Pushes the product to the cart if it does not exist
     // Raises quantity by 1 if it already exists
     if (!productInCart) {
-      testCart.products.push(tempObj);
+      cart.products.push(tempObj);
     } else {
       productInCart.quantity += parseInt(qtyInput.value);
     }
@@ -55,8 +56,8 @@ const addToCart = e => {
 };
 
 const updateLocalStorage = cb => {
-  const tempStr = JSON.stringify(testCart.products);
-  localStorage.setItem(testCart.key, tempStr);
+  const tempStr = JSON.stringify(cart.products);
+  localStorage.setItem(cart.key, tempStr);
   if (cb) {
     cb();
   }
@@ -65,7 +66,7 @@ const updateLocalStorage = cb => {
 const getTotalPrice = () => {
   let price = 0;
 
-  testCart.products.forEach(item => {
+  cart.products.forEach(item => {
     price += item.price * item.quantity;
   });
 
@@ -92,7 +93,7 @@ const decreaseQty = e => {
 const getTotalQty = () => {
   let total = 0;
 
-  testCart.products.forEach(item => {
+  cart.products.forEach(item => {
     total += parseInt(item.quantity);
   });
   return total;
@@ -102,9 +103,9 @@ const removeItem = e => {
   const item = e.target.parentElement.querySelector(".cart-fixed__name")
     .textContent;
 
-  const productInCart = findProduct(item, testCart);
+  const productInCart = findProduct(item, cart);
 
-  testCart.products = testCart.products.filter(item => {
+  cart.products = cart.products.filter(item => {
     return item.name !== productInCart.name;
   });
 
@@ -116,7 +117,7 @@ const changeQuantity = e => {
   const item = e.target.parentElement.querySelector(".cart-fixed__name")
     .textContent;
 
-  const productInCart = findProduct(item, testCart);
+  const productInCart = findProduct(item, cart);
   productInCart.quantity = val.value;
   updateLocalStorage(renderCart);
 };
@@ -137,7 +138,7 @@ const renderCart = () => {
   const qty = getTotalQty();
 
   items.innerHTML = "";
-  testCart.products.forEach(item => {
+  cart.products.forEach(item => {
     items.innerHTML += `<li class="cart-fixed__item">
                           <div class="cart-fixed__name">${item.name}</div>
                           <input type="number" value="${
@@ -165,7 +166,7 @@ const clearCart = () => {
   items.innerHTML = "";
   totalProductQty.textContent = "0";
   totalPrice.textContent = "0 kr";
-  testCart.products = [];
+  cart.products = [];
   localStorage.clear();
 };
 
@@ -181,7 +182,7 @@ const renderCheckout = e => {
 
   setTimeout(function() {
     window.location = target;
-  }, 2500);
+  }, 500);
 };
 
 checkLocalStorage();

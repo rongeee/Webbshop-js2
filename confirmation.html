@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Order confirmation</title>
+    <link rel="stylesheet" href="./styles/confirmation.css" />
   </head>
   <body>
     <h1>Order recieved!</h1>
@@ -17,18 +18,19 @@
       const recList = document.querySelector(".receipt");
 
       checkLocalStorage();
-
       const price = getTotalPrice();
 
       const renderConfirm = () => {
-        testCart.products.forEach(item => {
-          recList.innerHTML += `<li>${item.quantity} - ${item.name}</li>`;
+        cart.products.forEach(item => {
+          console.log(item);
+          recList.innerHTML += `<li><div class="checkout-text"> <h2>${item.name}</h2><p>${item.quantity}st - ${item.price} kr</p></div><img src="${item.image}"/></li>`;
         });
         // Write total price from session storage
         document.querySelector(".total").innerHTML = `${price} kr`;
       };
       renderConfirm();
-      testCart.products = [];      localStorage.clear();
+      cart.products = [];
+      localStorage.clear();
     </script>
   </body>
 </html>
