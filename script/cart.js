@@ -31,10 +31,9 @@ const addToCart = e => {
   const qtyInput = e.target.parentElement.querySelector('.product-card__qty');
   const productInDb = findProduct(clickedProduct, localDb);
   const productInCart = findProduct(clickedProduct, cart);
-  // Checks so the user has not edited the amount in DevTools and has set a negative number
+  // Checks so the user has not edited the amount in DevTools and set a negative number
   if (qtyInput.value <= 0) {
     qtyInput.value = 1;
-    console.log(qtyInput.value);
   }
   if (productInDb.quantity < qtyInput.value) {
     alert(
@@ -51,12 +50,16 @@ const addToCart = e => {
       };
       // Checks if the clicked item already exists in cart.
       // Pushes the product to the cart if it does not exist
-      // Raises quantity by 1 if it already exists
+      // Raises quantity by input quantity value if it already exists
 
       if (!productInCart) {
         cart.products.push(tempObj);
       } else {
         productInCart.quantity += parseInt(qtyInput.value);
+        // If quantity is raised above the current stock quantity the value will be set to the max stock quantity
+        if (productInDb.quantity < productInCart.quantity) {
+          productInCart.quantity = productInDb.quantity;
+        }
       }
     } else {
       console.error('The fuck did you do?');
