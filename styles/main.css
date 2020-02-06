@@ -238,9 +238,9 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  width: calc(100vw - 80px);
-  height: auto;
+  width: 100%;
   max-width: 300px;
+  height: auto;
   background: #111111;
   color: white;
   padding: 20px;
