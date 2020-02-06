@@ -35,13 +35,31 @@
           <p class="hero__desc">Best shop for clothes in europe</p>
         </div>
       </section>
-      <section class="filter">
-        <select name="categories" id="categories">
-          <option value="All">All</option>
-          <option value="Shirts">Shirts</option>
-          <option value="Hats">Hats</option>
-          <option value="Shoes">Shoes</option>
-        </select>
+      <section class="filter-section">
+        <form class="filter" style="display:flex;flex-direction:column;">
+          <h3 class="filter__headline">Filters</h3>
+
+          <label class="filter-container">
+            Shirts
+            <input class="filter-radio-btn" type="checkbox" value="Shirts" />
+            <span class="checkmark"></span>
+          </label>
+
+          <label class="filter-container">
+            Hats
+            <input class="filter-radio-btn" type="checkbox" value="Hats" />
+            <span class="checkmark"></span>
+          </label>
+          <label class="filter-container">
+            Shoes
+            <input class="filter-radio-btn" type="checkbox" value="Shoes" />
+            <span class="checkmark"></span>
+          </label>
+
+          <button class="filter-reset">
+            Reset Filters
+          </button>
+        </form>
       </section>
       <section class="products">
         <div class="products__container">

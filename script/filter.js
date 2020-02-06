@@ -1,27 +1,50 @@
-const selections = document.querySelector('#categories');
+const selections = document.querySelectorAll(".filter-container");
+const btns = document.querySelectorAll(".filter-radio-btn");
+const resetBtn = document.querySelector(".filter-reset");
+const allContainers = document.querySelectorAll(`.products__container--item`);
 
-selections.addEventListener('change', function(e) {
-  const userInput = e.target.value.toLowerCase();
+// Used in DOMContentLoaded-event in cart.js. Radios doesn't seem to reset on page refresh
+const resetRadios = () => {
+  btns.forEach(element => {
+    element.checked = false;
 
-  //Get all product containers
-  let containersToHide = document.querySelectorAll(
-    `.products__container--item`
-  );
-  // Hide all containers, we will display the relevant one after hiding
-  containersToHide.forEach(item => {
-    item.classList.add('hidden');
-  });
-
-  // If the user input is set to "all" every container will be changed to display block
-  if (userInput === 'all') {
-    containersToHide.forEach(item => {
-      item.classList.remove('hidden');
+    allContainers.forEach(cont => {
+      if (cont.classList.contains("hidden")) {
+        cont.classList.remove("hidden");
+      }
     });
-  }
-  // If a category is selected by the user, the selected category will
-  // be rendered by queryselecting the correct container with the user input string
-  else {
+  });
+};
+
+// hehehe namn
+const checkCheckboxes = () => {
+  btns.forEach(btn => {
+    let btnValue = btn.value.toLowerCase();
+    let container = document.querySelector(`.products__${btnValue}`);
+
+    if (btn.checked) {
+      container.classList.remove("hidden");
+    } else {
+      container.classList.add("hidden");
+    }
+  });
+};
+
+btns.forEach(element => {
+  element.addEventListener("click", function(e) {
+    const userInput = e.target.value.toLowerCase();
+
     let container = document.querySelector(`.products__${userInput}`);
-    container.classList.remove('hidden');
-  }
+
+    allContainers.forEach(item => {
+      item.classList.add("hidden");
+    });
+
+    checkCheckboxes();
+  });
+});
+
+resetBtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  resetRadios();
 });
