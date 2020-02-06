@@ -65,7 +65,7 @@
 }
 
 .products {
-  padding-bottom: 400px;
+  padding: 2em 0;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
