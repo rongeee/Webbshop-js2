@@ -81,7 +81,19 @@
     align-items: center;
   }
 
+  &__name {
+    margin: 10px 0;
+  }
+
+  &__price {
+    margin: 5px 0;
+  }
+
   &__stock {
+    font-size: 12px;
+  }
+
+  &__currency {
     font-size: 12px;
   }
 

@@ -8,7 +8,7 @@ const cardTemplate = (name, price, img, qty) => {
     <div class="product-card__image"><img src=${img}></div>
     <h3 class="product-card__name">${name}</h3>
     <div class="product-card__price-container">
-      <p class="product-card__price">${price}kr</p>
+      <p class="product-card__price">${price} <span class="product-card__currency">kr</span></p>
       <p class="product-card__stock">In Stock: x${qty}</p>
     </div>
     <div class="product-card__btn-qty-wrap">

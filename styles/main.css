@@ -188,7 +188,19 @@
           align-items: center;
 }
 
+.product-card__name {
+  margin: 10px 0;
+}
+
+.product-card__price {
+  margin: 5px 0;
+}
+
 .product-card__stock {
+  font-size: 12px;
+}
+
+.product-card__currency {
   font-size: 12px;
 }
 
