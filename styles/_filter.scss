@@ -1,18 +1,39 @@
 .filter {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin-top: 15px;
   border: 1px solid #b6b6b6;
   border-radius: 10px;
-  margin: 2em;
-  max-width: 10%;
-  padding: 1em;
+  margin: 9px;
+  margin-top: 20px;
+  padding: 1.5em;
+  position: sticky;
+  top: 20px;
+
+  @media screen and (max-width: 687px) {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    z-index: 4;
+    background-color: white;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+    border: none;
+    align-items: center;
+  }
 
   &__headline {
     margin: 0 0 10px 0;
   }
 }
 
+.filter-container-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
 .filter-container {
   position: relative;
   padding-left: 35px;

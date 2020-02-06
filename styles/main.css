@@ -67,11 +67,40 @@
 .products {
   width: 100%;
   padding-bottom: 400px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 5fr 1fr;
+      grid-template-columns: 5fr 1fr;
+  position: relative;
+}
+
+@media screen and (max-width: 687px) {
+  .products {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
 }
 
 .products__container {
-  margin: 0 auto;
   max-width: 1200px;
+  margin: 0 14px;
+}
+
+@media screen and (max-width: 687px) {
+  .products__container {
+    width: 100%;
+  }
 }
 
 .products__container--item {
@@ -344,19 +373,58 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 15px;
   border: 1px solid #b6b6b6;
   border-radius: 10px;
-  margin: 2em;
-  max-width: 10%;
-  padding: 1em;
+  margin: 9px;
+  margin-top: 20px;
+  padding: 1.5em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+}
+
+@media screen and (max-width: 687px) {
+  .filter {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    z-index: 4;
+    background-color: white;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+    border: none;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
 }
 
 .filter__headline {
   margin: 0 0 10px 0;
+}
+
+.filter-container-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .filter-container {

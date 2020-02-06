@@ -37,29 +37,6 @@
       </section>
       <section class="filter-section"></section>
       <section class="products">
-        <form class="filter" style="display:flex;flex-direction:column;">
-          <h3 class="filter__headline">Filters</h3>
-          <label class="filter-container">
-            Shirts
-            <input class="filter-radio-btn" type="checkbox" value="Shirts" />
-            <span class="checkmark"></span>
-          </label>
-
-          <label class="filter-container">
-            Hats
-            <input class="filter-radio-btn" type="checkbox" value="Hats" />
-            <span class="checkmark"></span>
-          </label>
-          <label class="filter-container">
-            Shoes
-            <input class="filter-radio-btn" type="checkbox" value="Shoes" />
-            <span class="checkmark"></span>
-          </label>
-
-          <button class="filter-reset">
-            Reset Filters
-          </button>
-        </form>
         <div class="products__container">
           <div class="products__shirts products__container--item">
             <h2 class="products__headline">Shirts</h2>
@@ -75,6 +52,30 @@
           </div>
           <!-- product-cell ska bytas ut och rendereras med JS -->
         </div>
+        <form class="filter">
+          <h3 class="filter__headline">Filters</h3>
+          <div class="filter-container-wrap">
+            <label class="filter-container">
+              Shirts
+              <input class="filter-radio-btn" type="checkbox" value="Shirts" />
+              <span class="checkmark"></span>
+            </label>
+
+            <label class="filter-container">
+              Hats
+              <input class="filter-radio-btn" type="checkbox" value="Hats" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="filter-container">
+              Shoes
+              <input class="filter-radio-btn" type="checkbox" value="Shoes" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <button class="filter-reset">
+            Reset Filters
+          </button>
+        </form>
       </section>
     </main>
     <footer class="footer">
