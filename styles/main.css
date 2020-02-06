@@ -299,7 +299,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   -webkit-transition-duration: 200ms;
           transition-duration: 200ms;
 }
@@ -403,6 +403,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding-bottom: 5px;
   border-bottom: 2px solid #ff4f4f;
   margin-bottom: 13px;
 }
