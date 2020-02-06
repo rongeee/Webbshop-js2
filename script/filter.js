@@ -16,18 +16,28 @@ const resetRadios = () => {
   });
 };
 
+// Checks all current checked filters and renders those categories.
 // hehehe namn
 const checkCheckboxes = () => {
+  let allUnchecked = false;
   btns.forEach(btn => {
     let btnValue = btn.value.toLowerCase();
     let container = document.querySelector(`.products__${btnValue}`);
 
+    // The bool checks if all radios are unchecked.
+    // Resets product listing if they are.
     if (btn.checked) {
+      allUnchecked = true;
       container.classList.remove("hidden");
     } else {
       container.classList.add("hidden");
     }
   });
+
+  if (!allUnchecked) {
+    resetRadios();
+    allUnchecked = false;
+  }
 };
 
 btns.forEach(element => {
