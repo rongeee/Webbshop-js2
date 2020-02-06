@@ -94,6 +94,10 @@
   }
 }
 
+.products__headline {
+  margin: 0 0 1em 0;
+}
+
 .products__container {
   max-width: 1400px;
   -ms-grid-column-align: center;
