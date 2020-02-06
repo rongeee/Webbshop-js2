@@ -10,7 +10,7 @@
   position: sticky;
   top: 20px;
 
-  @media screen and (max-width: 687px) {
+  @media screen and (max-width: 938px) {
     position: relative;
     max-width: 100%;
     width: 100%;
@@ -71,7 +71,7 @@
 }
 
 .checkmark:after {
-  content: "";
+  content: '';
   position: absolute;
   display: none;
 }
