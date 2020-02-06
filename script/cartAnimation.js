@@ -1,47 +1,37 @@
 const cartContainer = document.querySelector('.cart-fixed');
 const hideBtn = document.querySelector('.cart-fixed__name-total-wrap');
-cartContainer.style = 'transform: translateY(0px)';
 
 hideBtn.addEventListener('click', function() {
-  if (cartContainer.style.transform !== 'translate(0px, 0px)') {
-    cartContainer.style = `transform: translate(0px ,${cartContainer.clientHeight -
-      60}px)`;
+  if (cartContainer.classList.contains('foldedXY')) {
+    cartContainer.classList.remove('foldedXY');
+    cartContainer.classList.add('unfoldedX');
     setTimeout(() => {
-      cartContainer.style = `transform: translate(0px, 0px)`;
+      cartContainer.classList.remove('unfoldedX');
+      cartContainer.classList.add('unfoldedXY');
     }, 200);
   } else {
-    cartContainer.style =
-      'transform: translateY(' + (cartContainer.clientHeight - 60) + 'px)';
+    cartContainer.classList.add('foldedY');
+    cartContainer.classList.remove('unfoldedXY');
     setTimeout(() => {
-      cartContainer.style = `transform: translate(${cartContainer.clientWidth -
-        60}px, ${cartContainer.clientHeight - 60}px)`;
+      cartContainer.classList.remove('foldedY');
+      cartContainer.classList.add('foldedXY');
     }, 200);
   }
 });
 
-// Makes sure cartContainer does not stick up more than it should when cartContainer item list gets taller
-document.addEventListener('DOMContentLoaded', function() {
-  let addBtns;
+window.addEventListener('load', function() {
+  const addBtns = document.querySelectorAll('.product-card__buy-btn');
+  const notif = document.querySelector('.cart-fixed__qty-notif');
+  const time = getComputedStyle(notif).transitionDuration;
 
-  cartContainer.style =
-    'transform: translateY(' + (cartContainer.clientHeight - 60) + 'px)';
-  setTimeout(() => {
-    addBtns = document.querySelectorAll('.product-card__buy-btn');
-
-    addBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        if (cartContainer.style.transform != 'translateY(0px)') {
-          cartContainer.style.transitionDuration = '0';
-          cartContainer.style =
-            'transform: translateY(' +
-            (cartContainer.clientHeight - 60) +
-            'px)';
-          setTimeout(() => {
-            cartContainer.style = `transform: translate(${cartContainer.clientWidth -
-              60}px, ${cartContainer.clientHeight - 60}px)`;
-          }, 200);
-        }
-      });
+  console.log(time);
+  addBtns.forEach(item => {
+    item.addEventListener('click', function() {
+      notif.classList.toggle('bounce');
+      setTimeout(() => {
+        notif.classList.toggle('bounce');
+        //Change the animation time in the CSS class, must be kept under 1000ms!
+      }, time.replace('s', '00').replace('0.', ''));
     });
-  }, 200);
+  });
 });
