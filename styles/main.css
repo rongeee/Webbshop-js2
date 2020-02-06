@@ -210,6 +210,8 @@
 
 .cart-fixed__headline {
   margin: 0;
+  height: 25px;
+  width: 25px;
 }
 
 .cart-fixed__checkout, .cart-fixed__clear, .filter-reset {
