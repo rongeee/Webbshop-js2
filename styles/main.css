@@ -159,6 +159,20 @@
   border: 0;
 }
 
+.product-card__qty-btn:hover {
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+.product-card__neg-qty {
+  border-radius: 15px 0 0 15px;
+}
+
+.product-card__up-qty {
+  border-radius: 0 15px 15px 0;
+}
+
 .product-card__btn-qty-wrap {
   display: -ms-grid;
   display: grid;
