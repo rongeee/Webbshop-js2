@@ -15,6 +15,8 @@
 
   &__headline {
     margin: 0 0 1em 0;
+    text-align: center;
+    font-size: 2rem;
   }
 
   &__container {
@@ -52,10 +54,6 @@
         0 10px 10px rgba(0, 0, 0, 0.22);
     }
   }
-  &__headline {
-    text-align: center;
-    font-size: 2rem;
-  }
 }
 .product-card {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -76,6 +74,17 @@
       object-position: center;
     }
   }
+
+  &__price-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__stock {
+    font-size: 12px;
+  }
+
   &__buy-btn {
     padding: 10px 17px;
     background: white;
