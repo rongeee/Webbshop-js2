@@ -24,10 +24,36 @@
         </div>
       </section>
       <section class="products">
+        
         <div class="products__container">
+          <form class="filter">
+            <h3 class="filter__headline">Filters</h3>
+            <div class="filter-container-wrap">
+              <label class="filter-container">
+                Shirts
+                <input class="filter-radio-btn" type="checkbox" value="Shirts" />
+                <span class="checkmark"></span>
+              </label>
+  
+              <label class="filter-container">
+                Hats
+                <input class="filter-radio-btn" type="checkbox" value="Hats" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="filter-container">
+                Shoes
+                <input class="filter-radio-btn" type="checkbox" value="Shoes" />
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <button class="filter-reset">
+              Reset Filters
+            </button>
+          </form>
           <div class="products__shirts products__container--item">
             <h2 class="products__headline">Shirts</h2>
-            <div class="products__card-container"></div>
+            <div class="products__card-container">
+            </div>
           </div>
           <div class="products__hats products__container--item">
             <h2 class="products__headline">Hats</h2>
@@ -38,31 +64,9 @@
             <div class="products__card-container"></div>
           </div>
           <!-- product-cell ska bytas ut och rendereras med JS -->
-        </div>
-        <form class="filter">
-          <h3 class="filter__headline">Filters</h3>
-          <div class="filter-container-wrap">
-            <label class="filter-container">
-              Shirts
-              <input class="filter-radio-btn" type="checkbox" value="Shirts" />
-              <span class="checkmark"></span>
-            </label>
 
-            <label class="filter-container">
-              Hats
-              <input class="filter-radio-btn" type="checkbox" value="Hats" />
-              <span class="checkmark"></span>
-            </label>
-            <label class="filter-container">
-              Shoes
-              <input class="filter-radio-btn" type="checkbox" value="Shoes" />
-              <span class="checkmark"></span>
-            </label>
-          </div>
-          <button class="filter-reset">
-            Reset Filters
-          </button>
-        </form>
+        </div>
+
       </section>
       <section class="cart-fixed foldedXY">
         <div class="cart-fixed__total-qty cart-fixed__qty-notif"></div>
@@ -90,5 +94,6 @@
     <script src="./script/cart.js"></script>
     <script src="script/cartAnimation.js"></script>
     <script src="script/filter.js"></script>
+    <script src="script/header.js"></script>
   </body>
 </html>

@@ -1,15 +1,12 @@
 .products {
-  padding: 2em 0;
   justify-content: center;
-  align-items: flex-start;
-  display: grid;
-  grid-template-columns: minmax(min-content, 1000px) minmax(auto, 300px);
+  align-items: center;
+  display: flex;
   margin: 0 14px;
   position: relative;
+  flex-direction: column;
 
   @media screen and (max-width: 938px) {
-    display: flex;
-    flex-direction: column-reverse;
     margin: 0;
   }
 
@@ -26,15 +23,14 @@
 
     &--item {
       margin: 20px 0;
-      background: rgb(99, 241, 241);
-      padding: 20px;
+      position: relative;
     }
   }
 
   &__card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 10px;
+    grid-gap: 20px;
     grid-auto-flow: dense;
     // display: flex;
     // flex-flow: row wrap;
@@ -47,11 +43,12 @@
     justify-content: space-between;
     background: white;
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 3;
     &:hover {
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-        0 10px 10px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.171),
+        0 10px 10px rgba(0, 0, 0, 0.151);
     }
   }
 }

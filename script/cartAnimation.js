@@ -31,6 +31,7 @@ window.addEventListener('load', function() {
       setTimeout(() => {
         notif.classList.toggle('bounce');
         //Change the animation time in the CSS class, must be kept under 1000ms!
+        // Must be even hundred number 100, 200, 300 etc...
       }, time.replace('s', '00').replace('0.', ''));
     });
   });

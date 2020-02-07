@@ -1,16 +1,39 @@
 .nav {
-  background-color: black;
-  padding: 1em;
+  background-color: rgba(0, 0, 0, 0.623);
   color: white;
+  z-index: 4;
+  position: fixed;
+  width: 100%;
+  height: $nav-height;
+  top: 0;
+  z-index: 4;
+  transition-duration: 200ms;
 
   &__list {
     display: flex;
     flex-flow: row wrap;
     list-style: none;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   &__item {
     margin: 0 1em;
   }
+}
+
+body::after {
+  content: '';
+  width: 100%;
+  height: 182px;
+  top: $nav-height;
+  position: fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.185), rgba(0, 0, 0, 0));
+  z-index: 2;
+}
+.scrolled {
+  background: white;
+  color: black;
+}
+.hidden {
+  display: none;
 }

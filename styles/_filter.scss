@@ -1,43 +1,45 @@
 .filter {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  border: 1px solid #b6b6b6;
-  border-radius: 10px;
-  margin: 9px;
+  align-items: center;
+  margin: 0 auto;
   margin-top: 20px;
-  padding: 1.5em;
   position: sticky;
-  top: 20px;
+  top: $nav-height + 2px;
+  width: 100%;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.082);
 
-  @media screen and (max-width: 938px) {
-    position: relative;
-    max-width: 100%;
-    width: 100%;
-    z-index: 4;
+  @media screen and (max-width: 508px) {
     background-color: white;
     margin: 0;
     margin-bottom: 20px;
     padding: 0;
-    border: none;
-    align-items: center;
+    flex-direction: column;
   }
 
   &__headline {
-    margin: 0 0 10px 0;
+    padding: 0 1rem;
+    @media screen and (max-width: 508px) {
+      display: none;
+    }
   }
 }
 
 .filter-container-wrap {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-around;
+
+  width: 100%;
+  @media screen and (max-width: 508px) {
+    padding-top: 10px;
+  }
 }
 .filter-container {
   position: relative;
   padding-left: 35px;
-  margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
   user-select: none;
@@ -93,13 +95,22 @@
   border: none;
   @extend .cart-fixed__checkout;
   background: $color--accent;
-  padding: 0;
+  padding: 5px 15px;
+  border-radius: 100px;
+  border-top-right-radius: 0;
   font-size: 16px;
-  height: 40px;
-  width: 80%;
   align-self: center;
+  margin-top: 0;
+  margin-right: 2%;
   &:hover {
     background: rgb(235, 68, 68);
+  }
+  @media screen and (max-width: 508px) {
+    margin-right: 0;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: auto;
+    align-self: flex-end;
   }
 }
 

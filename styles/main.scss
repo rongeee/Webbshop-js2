@@ -1,18 +1,20 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap");
-@import "./header";
-@import "./hero";
-@import "./products";
-@import "./cart";
-@import "./footer";
-@import "./filter";
+$nav-height: 60px;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap');
+@import './header';
+@import './hero';
+@import './products';
+@import './cart';
+@import './footer';
+@import './filter';
 
 body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   position: relative;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 button {
