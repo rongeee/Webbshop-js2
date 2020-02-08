@@ -6,7 +6,6 @@
   margin-top: 20px;
   position: sticky;
   top: $nav-height + 2px;
-  width: 100%;
   z-index: 100;
   background: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.082);
@@ -15,7 +14,7 @@
     background-color: white;
     margin: 0;
     margin-bottom: 20px;
-    padding: 0;
+    padding: 0 1em;
     flex-direction: column;
   }
 
@@ -73,7 +72,7 @@
 }
 
 .checkmark:after {
-  content: '';
+  content: "";
   position: absolute;
   display: none;
 }

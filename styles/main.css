@@ -101,7 +101,7 @@ body::after {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 14px;
+  margin-bottom: 3em;
   position: relative;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -116,9 +116,12 @@ body::after {
 }
 
 .products__headline {
-  margin: 0 0 1em 0;
   text-align: center;
   font-size: 2rem;
+}
+
+.products__headline--first {
+  margin-top: 2em;
 }
 
 .products__container {
@@ -128,9 +131,15 @@ body::after {
   width: 100%;
 }
 
+@media (min-width: 938px) {
+  .products__container {
+    width: 75%;
+  }
+}
+
 .products__container--item {
-  margin: 20px 0;
   position: relative;
+  padding-bottom: 3em;
 }
 
 .products__card-container {
@@ -521,7 +530,6 @@ body::after {
   position: -webkit-sticky;
   position: sticky;
   top: 62px;
-  width: 100%;
   z-index: 100;
   background: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.082);
@@ -532,7 +540,7 @@ body::after {
     background-color: white;
     margin: 0;
     margin-bottom: 20px;
-    padding: 0;
+    padding: 0 1em;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -609,7 +617,7 @@ body::after {
 }
 
 .checkmark:after {
-  content: '';
+  content: "";
   position: absolute;
   display: none;
 }
