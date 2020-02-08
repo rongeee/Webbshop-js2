@@ -5,6 +5,7 @@ $color--accent: rgb(255, 79, 79);
   bottom: 0;
   right: 0;
   width: 100%;
+  box-sizing: border-box;
   max-width: 300px;
   height: auto;
   background: rgb(17, 17, 17);
@@ -25,7 +26,7 @@ $color--accent: rgb(255, 79, 79);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Roboto";
+    font-family: 'Roboto';
     // Must be even hundred number 100, 200, 300 etc...
     transition-duration: 200ms;
   }

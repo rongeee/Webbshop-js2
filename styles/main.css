@@ -289,6 +289,8 @@ body::after {
   bottom: 0;
   right: 0;
   width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   max-width: 300px;
   height: auto;
   background: #111111;
@@ -318,7 +320,7 @@ body::after {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   -webkit-transition-duration: 200ms;
           transition-duration: 200ms;
 }
