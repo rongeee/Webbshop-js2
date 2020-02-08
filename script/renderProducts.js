@@ -2,6 +2,11 @@ const localDb = {
   products: []
 };
 
+const URL = "./products.json";
+localDb.products = HappyLib.loadProducts(URL);
+
+console.log(HappyLib.description);
+
 const cardTemplate = (name, price, img, qty) => {
   return `
     <div class="products__product-card">
@@ -25,47 +30,25 @@ const cardTemplate = (name, price, img, qty) => {
     `;
 };
 
-const handleErrors = response => {
-  if (!response.ok) {
-    throw Error(
-      `Status: ${response.status}
-       Statustext: ${response.statusText}
-       Comment: Psst, checka vad fetchen pekar på`
-    );
-  }
-  return response.json();
+const renderProducts = () => {
+  let container = document.querySelector(
+    `.products__${item.category} .products__card-container`
+  );
+  container.innerHTML += cardTemplate(
+    item.name,
+    item.price,
+    item.image,
+    item.quantity
+  );
+
+  const addBtn = document.querySelectorAll(".product-card__buy-btn");
+  const upQtyBtn = document.querySelectorAll(".product-card__up-qty");
+  const negQtyBtn = document.querySelectorAll(".product-card__neg-qty");
+  const qtyInput = document.querySelectorAll(".product-card__qty");
+  addBtnEvent(upQtyBtn, increaseQty, "click");
+  addBtnEvent(negQtyBtn, decreaseQty, "click");
+  addBtnEvent(qtyInput, handleQty, "change");
+  addBtnEvent(addBtn, addToCart, "click");
 };
-
-function getProducts() {
-  fetch('./products.json')
-    .then(handleErrors)
-    .then(data => {
-      data.products.forEach(item => {
-        localDb.products.push(item);
-
-        let container = document.querySelector(
-          `.products__${item.category} .products__card-container`
-        );
-        container.innerHTML += cardTemplate(
-          item.name,
-          item.price,
-          item.image,
-          item.quantity
-        );
-      });
-
-      const addBtn = document.querySelectorAll('.product-card__buy-btn');
-      const upQtyBtn = document.querySelectorAll('.product-card__up-qty');
-      const negQtyBtn = document.querySelectorAll('.product-card__neg-qty');
-      const qtyInput = document.querySelectorAll('.product-card__qty');
-      addBtnEvent(upQtyBtn, increaseQty, 'click');
-      addBtnEvent(negQtyBtn, decreaseQty, 'click');
-      addBtnEvent(qtyInput, handleQty, 'change');
-      addBtnEvent(addBtn, addToCart, 'click');
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}
 
 getProducts();
