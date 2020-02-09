@@ -1,11 +1,7 @@
 const localDb = {
   products: []
 };
-
 const URL = "./products.json";
-localDb.products = HappyLib.loadProducts(URL);
-
-console.log(HappyLib.description);
 
 const cardTemplate = (name, price, img, qty) => {
   return `
@@ -30,25 +26,30 @@ const cardTemplate = (name, price, img, qty) => {
     `;
 };
 
-const renderProducts = () => {
-  let container = document.querySelector(
-    `.products__${item.category} .products__card-container`
-  );
-  container.innerHTML += cardTemplate(
-    item.name,
-    item.price,
-    item.image,
-    item.quantity
-  );
+const renderProducts = items => {
+  localDb.products = items;
+
+  items.products.forEach(item => {
+    let container = document.querySelector(
+      `.products__${item.category} .products__card-container`
+    );
+
+    container.innerHTML += cardTemplate(
+      item.name,
+      item.price,
+      item.image,
+      item.quantity
+    );
+  });
 
   const addBtn = document.querySelectorAll(".product-card__buy-btn");
   const upQtyBtn = document.querySelectorAll(".product-card__up-qty");
   const negQtyBtn = document.querySelectorAll(".product-card__neg-qty");
   const qtyInput = document.querySelectorAll(".product-card__qty");
-  addBtnEvent(upQtyBtn, increaseQty, "click");
-  addBtnEvent(negQtyBtn, decreaseQty, "click");
-  addBtnEvent(qtyInput, handleQty, "change");
-  addBtnEvent(addBtn, addToCart, "click");
+  HappyLib.addEvents(upQtyBtn, increaseQty, "click");
+  HappyLib.addEvents(negQtyBtn, decreaseQty, "click");
+  HappyLib.addEvents(qtyInput, handleQty, "change");
+  HappyLib.addEvents(addBtn, addToCart, "click");
 };
 
-getProducts();
+HappyLib.loadProducts(URL, renderProducts);
