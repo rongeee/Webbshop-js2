@@ -48,7 +48,7 @@ const addToCart = e => {
     } else {
       console.error("The fuck did you do?");
     }
-    HappyLib.updateLocalStorage(renderCart);
+    HappyLib.updateLocalStorage(cart.key, renderCart);
     // Local store cart items and total price
   }
 };
@@ -87,7 +87,7 @@ const handleCartQty = e => {
   const productInCart = HappyLib.findProduct(clickedProduct, cart);
   if (inputQty.value > productInDb.quantity) {
     productInCart.quantity = productInDb.quantity;
-    HappyLib.updateLocalStorage(renderCart);
+    HappyLib.updateLocalStorage(cart.key, renderCart);
     alert("Stock limit reached");
   }
 };
@@ -111,7 +111,7 @@ const removeItem = e => {
     return item.name !== productInCart.name;
   });
 
-  HappyLib.updateLocalStorage(renderCart);
+  HappyLib.updateLocalStorage(cart.key, renderCart);
 };
 
 const changeQuantity = e => {
@@ -126,7 +126,7 @@ const changeQuantity = e => {
       return item.name !== productInCart.name;
     });
   }
-  HappyLib.updateLocalStorage(renderCart);
+  HappyLib.updateLocalStorage(cart.key, renderCart);
 };
 
 const renderCart = () => {
