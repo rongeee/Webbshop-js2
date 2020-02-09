@@ -6,32 +6,16 @@ const cart = {
   products: []
 };
 
-const checkLocalStorage = () => {
-  let testProducts = localStorage.getItem(cart.key);
-
-  if (testProducts) {
-    cart.products = JSON.parse(testProducts);
-    return true;
-  }
-};
-
-const findProduct = (name, db) => {
-  let foundProduct = db.products.filter(item => {
-    if (name === item.name) {
-      return item;
-    }
-  });
-  return foundProduct[0];
-};
-
 const addToCart = e => {
   const clickedProduct = e.target.parentElement.parentElement.querySelector(
     ".product-card__name"
   ).textContent;
   const qtyInput = e.target.parentElement.querySelector(".product-card__qty");
-  const productInDb = findProduct(clickedProduct, localDb);
-  const productInCart = findProduct(clickedProduct, cart);
+  const productInDb = HappyLib.findProduct(clickedProduct, localDb);
+  const productInCart = HappyLib.findProduct(clickedProduct, cart);
+
   // Checks so the user has not edited the amount in DevTools and set a negative number
+
   if (qtyInput.value <= 0) {
     qtyInput.value = 1;
   }
@@ -64,27 +48,9 @@ const addToCart = e => {
     } else {
       console.error("The fuck did you do?");
     }
-    updateLocalStorage(renderCart);
+    HappyLib.updateLocalStorage(renderCart);
     // Local store cart items and total price
   }
-};
-
-const updateLocalStorage = cb => {
-  const tempStr = JSON.stringify(cart.products);
-  localStorage.setItem(cart.key, tempStr);
-  if (cb) {
-    cb();
-  }
-};
-
-const getTotalPrice = () => {
-  let price = 0;
-
-  cart.products.forEach(item => {
-    price += item.price * item.quantity;
-  });
-
-  return price;
 };
 
 const increaseQty = e => {
@@ -117,11 +83,11 @@ const handleCartQty = e => {
     ".cart-fixed__name"
   ).textContent;
   const inputQty = e.target.parentElement.querySelector(".cart-fixed__qty");
-  const productInDb = findProduct(clickedProduct, localDb);
-  const productInCart = findProduct(clickedProduct, cart);
+  const productInDb = HappyLib.findProduct(clickedProduct, localDb);
+  const productInCart = HappyLib.findProduct(clickedProduct, cart);
   if (inputQty.value > productInDb.quantity) {
     productInCart.quantity = productInDb.quantity;
-    updateLocalStorage(renderCart);
+    HappyLib.updateLocalStorage(renderCart);
     alert("Stock limit reached");
   }
 };
@@ -139,13 +105,13 @@ const removeItem = e => {
   const item = e.target.parentElement.querySelector(".cart-fixed__name")
     .textContent;
 
-  const productInCart = findProduct(item, cart);
+  const productInCart = HappyLib.findProduct(item, cart);
 
   cart.products = cart.products.filter(item => {
     return item.name !== productInCart.name;
   });
 
-  updateLocalStorage(renderCart);
+  HappyLib.updateLocalStorage(renderCart);
 };
 
 const changeQuantity = e => {
@@ -153,29 +119,21 @@ const changeQuantity = e => {
   const item = e.target.parentElement.querySelector(".cart-fixed__name")
     .textContent;
 
-  const productInCart = findProduct(item, cart);
+  const productInCart = HappyLib.findProduct(item, cart);
   productInCart.quantity = val.value;
   if (val.value <= 0) {
     cart.products = cart.products.filter(item => {
       return item.name !== productInCart.name;
     });
   }
-  updateLocalStorage(renderCart);
-};
-
-const addBtnEvent = (btns, func, type) => {
-  btns.forEach(item => {
-    item.addEventListener(type, e => {
-      func(e);
-    });
-  });
+  HappyLib.updateLocalStorage(renderCart);
 };
 
 const renderCart = () => {
   const items = document.querySelector(".cart-fixed__cart-items");
   const totalPrice = document.querySelector(".cart-fixed__total");
   const totalQty = document.querySelector(".cart-fixed__total-qty");
-  const price = getTotalPrice();
+  const price = HappyLib.getTotalPrice(cart.products);
   const qty = getTotalQty();
 
   items.innerHTML = "";
@@ -193,9 +151,9 @@ const renderCart = () => {
   const removeBtn = document.querySelectorAll(".cart-fixed__remove-btn");
   const qtyInput = document.querySelectorAll(".cart-fixed__qty");
 
-  addBtnEvent(removeBtn, removeItem, "click");
-  addBtnEvent(qtyInput, changeQuantity, "change");
-  addBtnEvent(qtyInput, handleCartQty, "change");
+  HappyLib.addEvents(removeBtn, removeItem, "click");
+  HappyLib.addEvents(qtyInput, changeQuantity, "change");
+  HappyLib.addEvents(qtyInput, handleCartQty, "change");
 
   totalPrice.textContent = `${price} kr`;
   totalQty.textContent = `${qty}`;
@@ -227,7 +185,7 @@ const renderCheckout = e => {
   }, 500);
 };
 
-checkLocalStorage();
+HappyLib.localStorageInit(cart.key);
 
 document.addEventListener("DOMContentLoaded", function() {
   if (document.querySelector(".cart-fixed__clear")) {

@@ -27,7 +27,7 @@ const cardTemplate = (name, price, img, qty) => {
 };
 
 const renderProducts = items => {
-  localDb.products = items;
+  localDb.products = items.products;
 
   items.products.forEach(item => {
     let container = document.querySelector(
