@@ -1,6 +1,7 @@
 const localDb = {
   products: []
 };
+const URL = "./products.json";
 
 const cardTemplate = (name, price, img, qty) => {
   return `
@@ -25,47 +26,30 @@ const cardTemplate = (name, price, img, qty) => {
     `;
 };
 
-const handleErrors = response => {
-  if (!response.ok) {
-    throw Error(
-      `Status: ${response.status}
-       Statustext: ${response.statusText}
-       Comment: Psst, checka vad fetchen pekar på`
+const renderProducts = items => {
+  localDb.products = items.products;
+
+  items.products.forEach(item => {
+    let container = document.querySelector(
+      `.products__${item.category} .products__card-container`
     );
-  }
-  return response.json();
+
+    container.innerHTML += cardTemplate(
+      item.name,
+      item.price,
+      item.image,
+      item.quantity
+    );
+  });
+
+  const addBtn = document.querySelectorAll(".product-card__buy-btn");
+  const upQtyBtn = document.querySelectorAll(".product-card__up-qty");
+  const negQtyBtn = document.querySelectorAll(".product-card__neg-qty");
+  const qtyInput = document.querySelectorAll(".product-card__qty");
+  HappyLib.addEvents(upQtyBtn, increaseQty, "click");
+  HappyLib.addEvents(negQtyBtn, decreaseQty, "click");
+  HappyLib.addEvents(qtyInput, handleQty, "change");
+  HappyLib.addEvents(addBtn, addToCart, "click");
 };
 
-function getProducts() {
-  fetch('./products.json')
-    .then(handleErrors)
-    .then(data => {
-      data.products.forEach(item => {
-        localDb.products.push(item);
-
-        let container = document.querySelector(
-          `.products__${item.category} .products__card-container`
-        );
-        container.innerHTML += cardTemplate(
-          item.name,
-          item.price,
-          item.image,
-          item.quantity
-        );
-      });
-
-      const addBtn = document.querySelectorAll('.product-card__buy-btn');
-      const upQtyBtn = document.querySelectorAll('.product-card__up-qty');
-      const negQtyBtn = document.querySelectorAll('.product-card__neg-qty');
-      const qtyInput = document.querySelectorAll('.product-card__qty');
-      addBtnEvent(upQtyBtn, increaseQty, 'click');
-      addBtnEvent(negQtyBtn, decreaseQty, 'click');
-      addBtnEvent(qtyInput, handleQty, 'change');
-      addBtnEvent(addBtn, addToCart, 'click');
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}
-
-getProducts();
+HappyLib.loadProducts(URL, renderProducts);
