@@ -1,9 +1,10 @@
-const header = document.querySelector('.nav');
+const header = document.querySelector(".nav");
+const body = document.querySelector("body");
 
-window.addEventListener('scroll', function() {
+window.addEventListener("scroll", function() {
   if (window.scrollY !== 0) {
-    header.classList.add('scrolled');
+    header.classList.add("scrolled");
   } else {
-    header.classList.remove('scrolled');
+    header.classList.remove("scrolled");
   }
 });

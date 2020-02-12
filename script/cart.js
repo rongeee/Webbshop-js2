@@ -1,5 +1,3 @@
-// TODO: Add localStorage-handling?
-
 const cart = {
   // Key should be randomized in a real project. Used as reference point and unique identifier
   key: "qwerqwerqwerqwerqwerqwer",
@@ -179,7 +177,8 @@ const renderCheckout = e => {
                       </div>`;
 
   document.body.innerHTML = loadPopup;
-
+  const body = document.querySelector("body");
+  body.classList.add("no-after");
   setTimeout(function() {
     window.location = target;
   }, 500);
