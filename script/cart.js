@@ -1,5 +1,3 @@
-// TODO: Add localStorage-handling?
-
 const cart = {
   // Key should be randomized in a real project. Used as reference point and unique identifier
   key: "qwerqwerqwerqwerqwerqwer",
@@ -15,7 +13,6 @@ const addToCart = e => {
   const productInCart = HappyLib.findProduct(clickedProduct, cart);
 
   // Checks so the user has not edited the amount in DevTools and set a negative number
-
   if (qtyInput.value <= 0) {
     qtyInput.value = 1;
   }
@@ -24,7 +21,8 @@ const addToCart = e => {
       `You can't buy that many items we only have ${productInDb.quantity} left in stock`
     );
   } else {
-    // Checks the productInDb variable to see if it contains a product
+    // Checks the productInDb item to see if it contains a product.
+    // This can't really fail in this project...
     if (productInDb) {
       let tempObj = {
         name: productInDb.name,
@@ -32,10 +30,10 @@ const addToCart = e => {
         quantity: parseInt(qtyInput.value),
         image: productInDb.image
       };
+
       // Checks if the clicked item already exists in cart.
       // Pushes the product to the cart if it does not exist
       // Raises quantity by input quantity value if it already exists
-
       if (!productInCart) {
         cart.products.push(tempObj);
       } else {
@@ -49,7 +47,6 @@ const addToCart = e => {
       console.error("The fuck did you do?");
     }
     HappyLib.updateLocalStorage(cart.key, renderCart);
-    // Local store cart items and total price
   }
 };
 
@@ -182,7 +179,7 @@ const renderCheckout = e => {
 
   setTimeout(function() {
     window.location = target;
-  }, 500);
+  }, 2500);
 };
 
 HappyLib.localStorageInit(cart.key);
