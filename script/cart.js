@@ -13,7 +13,6 @@ const addToCart = e => {
   const productInCart = HappyLib.findProduct(clickedProduct, cart);
 
   // Checks so the user has not edited the amount in DevTools and set a negative number
-
   if (qtyInput.value <= 0) {
     qtyInput.value = 1;
   }
@@ -22,7 +21,8 @@ const addToCart = e => {
       `You can't buy that many items we only have ${productInDb.quantity} left in stock`
     );
   } else {
-    // Checks the productInDb variable to see if it contains a product
+    // Checks the productInDb item to see if it contains a product.
+    // This can't really fail in this project...
     if (productInDb) {
       let tempObj = {
         name: productInDb.name,
@@ -30,10 +30,10 @@ const addToCart = e => {
         quantity: parseInt(qtyInput.value),
         image: productInDb.image
       };
+
       // Checks if the clicked item already exists in cart.
       // Pushes the product to the cart if it does not exist
       // Raises quantity by input quantity value if it already exists
-
       if (!productInCart) {
         cart.products.push(tempObj);
       } else {
@@ -47,7 +47,6 @@ const addToCart = e => {
       console.error("The fuck did you do?");
     }
     HappyLib.updateLocalStorage(cart.key, renderCart);
-    // Local store cart items and total price
   }
 };
 
@@ -90,15 +89,6 @@ const handleCartQty = e => {
   }
 };
 
-const getTotalQty = () => {
-  let total = 0;
-
-  cart.products.forEach(item => {
-    total += parseInt(item.quantity);
-  });
-  return total;
-};
-
 const removeItem = e => {
   const item = e.target.parentElement.querySelector(".cart-fixed__name")
     .textContent;
@@ -132,7 +122,7 @@ const renderCart = () => {
   const totalPrice = document.querySelector(".cart-fixed__total");
   const totalQty = document.querySelector(".cart-fixed__total-qty");
   const price = HappyLib.getTotalPrice(cart.products);
-  const qty = getTotalQty();
+  const qty = HappyLib.getTotalQty(cart.products);
 
   items.innerHTML = "";
   cart.products.forEach(item => {
@@ -181,7 +171,7 @@ const renderCheckout = e => {
   body.classList.add("no-after");
   setTimeout(function() {
     window.location = target;
-  }, 500);
+  }, 2500);
 };
 
 HappyLib.localStorageInit(cart.key);

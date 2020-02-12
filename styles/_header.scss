@@ -14,13 +14,20 @@
     flex-flow: row wrap;
     list-style: none;
     justify-content: flex-start;
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
   }
 
   &__item {
     margin: 0 1em;
+    cursor: pointer;
   }
 }
 
+<<<<<<< HEAD
 body {
   &::after {
     content: "";
@@ -34,10 +41,24 @@ body {
   &.no-after::after {
     display: none;
   }
+=======
+body::after {
+  content: "";
+  width: 100%;
+  height: 182px;
+  top: $nav-height;
+  position: fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.185), rgba(0, 0, 0, 0));
+  z-index: 2;
+>>>>>>> 457ae08436a0775ecfc49b6570f2df4e48f47f82
 }
 .scrolled {
   background: white;
   color: black;
+
+  a {
+    color: black;
+  }
 }
 .hidden {
   display: none;

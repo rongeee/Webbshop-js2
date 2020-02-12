@@ -27,8 +27,14 @@
           justify-content: flex-start;
 }
 
+.nav__list a {
+  text-decoration: none;
+  color: white;
+}
+
 .nav__item {
   margin: 0 1em;
+  cursor: pointer;
 }
 
 body::after {
@@ -48,6 +54,10 @@ body.no-after::after {
 
 .scrolled {
   background: white;
+  color: black;
+}
+
+.scrolled a {
   color: black;
 }
 
@@ -678,7 +688,11 @@ body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   position: relative;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 button {
