@@ -89,15 +89,6 @@ const handleCartQty = e => {
   }
 };
 
-const getTotalQty = () => {
-  let total = 0;
-
-  cart.products.forEach(item => {
-    total += parseInt(item.quantity);
-  });
-  return total;
-};
-
 const removeItem = e => {
   const item = e.target.parentElement.querySelector(".cart-fixed__name")
     .textContent;
@@ -131,7 +122,7 @@ const renderCart = () => {
   const totalPrice = document.querySelector(".cart-fixed__total");
   const totalQty = document.querySelector(".cart-fixed__total-qty");
   const price = HappyLib.getTotalPrice(cart.products);
-  const qty = getTotalQty();
+  const qty = HappyLib.getTotalQty(cart.products);
 
   items.innerHTML = "";
   cart.products.forEach(item => {
