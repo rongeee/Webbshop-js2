@@ -13,12 +13,13 @@
     <ul class="receipt"></ul>
     <div class="total"></div>
     <a href="./index.html">Back to shop</a>
+    <script src="lib/happyLib.js"></script>
     <script src="./script/cart.js"></script>
     <script>
       const recList = document.querySelector(".receipt");
 
-      checkLocalStorage();
-      const price = getTotalPrice();
+      HappyLib.localStorageInit();
+      const price = HappyLib.getTotalPrice(cart.products);
 
       const renderConfirm = () => {
         cart.products.forEach(item => {
