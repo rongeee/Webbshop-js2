@@ -23,6 +23,7 @@
     max-width: 1400px;
     justify-self: center;
     width: 100%;
+    padding-top: 2em;
 
     @media (min-width: 938px) {
       width: 75%;
@@ -31,11 +32,6 @@
     &--item {
       position: relative;
       padding-bottom: 3em;
-      padding-top: 2em;
-
-      & + div {
-        margin-top: -2em;
-      }
     }
   }
 

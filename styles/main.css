@@ -143,6 +143,7 @@ body.no-after::after {
   -ms-grid-column-align: center;
       justify-self: center;
   width: 100%;
+  padding-top: 2em;
 }
 
 @media (min-width: 938px) {
@@ -154,11 +155,6 @@ body.no-after::after {
 .products__container--item {
   position: relative;
   padding-bottom: 3em;
-  padding-top: 2em;
-}
-
-.products__container--item + div {
-  margin-top: -2em;
 }
 
 .products__card-container {
