@@ -154,6 +154,11 @@ body.no-after::after {
 .products__container--item {
   position: relative;
   padding-bottom: 3em;
+  padding-top: 2em;
+}
+
+.products__container--item + div {
+  margin-top: -2em;
 }
 
 .products__card-container {
